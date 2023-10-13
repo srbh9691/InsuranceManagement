@@ -17,7 +17,7 @@ namespace InsuranceManagementAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddOrUpdatePolicy(Policy policy)
+        public async Task<IActionResult> AddPolicy(Policy policy)
         {
             List<ProcedureParameter> parameters = new()
             {
@@ -34,7 +34,7 @@ namespace InsuranceManagementAPI.Controllers
 
         [HttpPut]
         [Route("{PolicyID}")]
-        public async Task<IActionResult> AddOrUpdatePolicy([FromRoute] string PolicyID, Policy policy)
+        public async Task<IActionResult> UpdatePolicy([FromRoute] string PolicyID, Policy policy)
         {
             List<ProcedureParameter> parameters = new()
             {
