@@ -1,24 +1,24 @@
 USE [InsuranceManagement]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_ValidateUser]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetPolicy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetPolicy]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_GetPolicy]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetPassword]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetPassword]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_GetPassword]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_DeletePolicy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_DeletePolicy]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_DeletePolicy]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddUserAccount]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddUserAccount]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_AddUserAccount]
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddUpdatePolicy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddUpdatePolicy]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[SSP_AddUpdatePolicy]
 GO
-/****** Object:  StoredProcedure [dbo].[GetPassword]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPassword]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP PROCEDURE IF EXISTS [dbo].[GetPassword]
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Person_PhoneNo]') AND type in (N'U'))
@@ -61,10 +61,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Custo
 ALTER TABLE [dbo].[Customer] DROP CONSTRAINT IF EXISTS [FK_Customer_Person]
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Claim_Intimation]') AND type in (N'U'))
-ALTER TABLE [dbo].[Claim_Intimation] DROP CONSTRAINT IF EXISTS [FK_ClaimIntimation_Customer]
+ALTER TABLE [dbo].[Claim_Intimation] DROP CONSTRAINT IF EXISTS [FK_Claim_Intimation_Customer]
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Claim_Intimation]') AND type in (N'U'))
-ALTER TABLE [dbo].[Claim_Intimation] DROP CONSTRAINT IF EXISTS [FK_ClaimIntimation_Claim]
+ALTER TABLE [dbo].[Claim_Intimation] DROP CONSTRAINT IF EXISTS [FK_Claim_Intimation_Claim]
 GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Claim_Documents]') AND type in (N'U'))
 ALTER TABLE [dbo].[Claim_Documents] DROP CONSTRAINT IF EXISTS [FK_Claim_Documents_Claim]
@@ -81,67 +81,70 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Claim]') AND type in (N'U'))
 ALTER TABLE [dbo].[Claim] DROP CONSTRAINT IF EXISTS [FK_Claim_Customer]
 GO
-/****** Object:  Table [dbo].[Vehicle]    Script Date: 10/13/2023 12:52:15 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Claim]') AND type in (N'U'))
+ALTER TABLE [dbo].[Claim] DROP CONSTRAINT IF EXISTS [FK_Claim_Claim]
+GO
+/****** Object:  Table [dbo].[Vehicle]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Vehicle]
 GO
-/****** Object:  Table [dbo].[Policy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Policy]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Policy]
 GO
-/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_PhoneNo]
 GO
-/****** Object:  Table [dbo].[Person_Name]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person_Name]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_Name]
 GO
-/****** Object:  Table [dbo].[Person_LoginInfo]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person_LoginInfo]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_LoginInfo]
 GO
-/****** Object:  Table [dbo].[Person_Address]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person_Address]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person_Address]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Person]
 GO
-/****** Object:  Table [dbo].[Employee]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Employee]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Employee]
 GO
-/****** Object:  Table [dbo].[CustomerPolicy_Documents]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[CustomerPolicy_Documents]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[CustomerPolicy_Documents]
 GO
-/****** Object:  Table [dbo].[CustomerPolicy_Details]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[CustomerPolicy_Details]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[CustomerPolicy_Details]
 GO
-/****** Object:  Table [dbo].[CustomerPolicy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[CustomerPolicy]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[CustomerPolicy]
 GO
-/****** Object:  Table [dbo].[Customer_Vehicle_Ownership]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Customer_Vehicle_Ownership]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Customer_Vehicle_Ownership]
 GO
-/****** Object:  Table [dbo].[Customer_Policy_Purchase]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Customer_Policy_Purchase]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Customer_Policy_Purchase]
 GO
-/****** Object:  Table [dbo].[Customer_Documents]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Customer_Documents]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Customer_Documents]
 GO
-/****** Object:  Table [dbo].[Customer]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Customer]
 GO
-/****** Object:  Table [dbo].[Claim_Intimation]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Claim_Intimation]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Claim_Intimation]
 GO
-/****** Object:  Table [dbo].[Claim_Documents]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Claim_Documents]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Claim_Documents]
 GO
-/****** Object:  Table [dbo].[Claim_BankDetails]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Claim_BankDetails]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Claim_BankDetails]
 GO
-/****** Object:  Table [dbo].[Claim]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Claim]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP TABLE IF EXISTS [dbo].[Claim]
 GO
-/****** Object:  User [Admin]    Script Date: 10/4/2023 10:35:22 PM ******/
+/****** Object:  User [Admin]    Script Date: 10/13/2023 7:23:15 PM ******/
 DROP USER IF EXISTS [Admin]
 GO
-/****** Object:  User [Admin]    Script Date: 10/4/2023 10:35:22 PM ******/
+/****** Object:  User [Admin]    Script Date: 10/13/2023 7:23:15 PM ******/
 CREATE USER [Admin] FOR LOGIN [Admin] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [Admin]
@@ -162,16 +165,16 @@ ALTER ROLE [db_denydatareader] ADD MEMBER [Admin]
 GO
 ALTER ROLE [db_denydatawriter] ADD MEMBER [Admin]
 GO
-/****** Object:  Table [dbo].[Claim]    Script Date: 10/4/2023 10:35:22 PM ******/
+/****** Object:  Table [dbo].[Claim]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Claim](
 	[ClaimID] [nvarchar](50) NOT NULL,
-	[CustomerID] [bigint] NOT NULL,
+	[CustomerID] [nvarchar](20) NOT NULL,
 	[CustomerPolicyID] [nvarchar](50) NOT NULL,
-	[ApprovedBy] [bigint] NULL,
+	[ApprovedBy] [nvarchar](20) NULL,
 	[ClaimType] [nvarchar](20) NOT NULL,
 	[DamageDetails] [nvarchar](max) NOT NULL,
 	[SettlementStatus] [nvarchar](50) NOT NULL,
@@ -182,7 +185,7 @@ CREATE TABLE [dbo].[Claim](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Claim_BankDetails]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Claim_BankDetails]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -198,7 +201,7 @@ CREATE TABLE [dbo].[Claim_BankDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Claim_Documents]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Claim_Documents]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -214,14 +217,14 @@ CREATE TABLE [dbo].[Claim_Documents](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Claim_Intimation]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Claim_Intimation]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Claim_Intimation](
 	[ClaimID] [nvarchar](50) NOT NULL,
-	[CustomerID] [bigint] NOT NULL,
+	[CustomerID] [nvarchar](20) NOT NULL,
 	[ClaimIntimationDate] [datetime] NOT NULL,
  CONSTRAINT [PK_ClaimIntimation] PRIMARY KEY CLUSTERED 
 (
@@ -230,13 +233,13 @@ CREATE TABLE [dbo].[Claim_Intimation](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customer]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Customer](
-	[CustomerID] [bigint] NOT NULL,
+	[CustomerID] [nvarchar](20) NOT NULL,
 	[PersonID] [bigint] NOT NULL,
  CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED 
 (
@@ -244,13 +247,13 @@ CREATE TABLE [dbo].[Customer](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customer_Documents]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Customer_Documents]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Customer_Documents](
-	[CustomerID] [bigint] NOT NULL,
+	[CustomerID] [nvarchar](20) NOT NULL,
 	[DocumentID] [bigint] NOT NULL,
 	[DocumentName] [nvarchar](25) NOT NULL,
  CONSTRAINT [PK_Customer_Documents] PRIMARY KEY CLUSTERED 
@@ -260,13 +263,13 @@ CREATE TABLE [dbo].[Customer_Documents](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customer_Policy_Purchase]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Customer_Policy_Purchase]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Customer_Policy_Purchase](
-	[CustomerID] [bigint] NOT NULL,
+	[CustomerID] [nvarchar](20) NOT NULL,
 	[CustomerPolicyID] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_Customer_Policy_Purchase] PRIMARY KEY CLUSTERED 
 (
@@ -275,13 +278,13 @@ CREATE TABLE [dbo].[Customer_Policy_Purchase](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customer_Vehicle_Ownership]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Customer_Vehicle_Ownership]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Customer_Vehicle_Ownership](
-	[CustomerID] [bigint] NOT NULL,
+	[CustomerID] [nvarchar](20) NOT NULL,
 	[VehicleChesisNo] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_Customer_Vehicle_Ownership] PRIMARY KEY CLUSTERED 
 (
@@ -290,7 +293,7 @@ CREATE TABLE [dbo].[Customer_Vehicle_Ownership](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CustomerPolicy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[CustomerPolicy]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -305,7 +308,7 @@ CREATE TABLE [dbo].[CustomerPolicy](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CustomerPolicy_Details]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[CustomerPolicy_Details]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -322,7 +325,7 @@ CREATE TABLE [dbo].[CustomerPolicy_Details](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CustomerPolicy_Documents]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[CustomerPolicy_Documents]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -338,13 +341,13 @@ CREATE TABLE [dbo].[CustomerPolicy_Documents](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Employee]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Employee]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Employee](
-	[EmployeeId] [bigint] NOT NULL,
+	[EmployeeId] [nvarchar](20) NOT NULL,
 	[PersonId] [bigint] NOT NULL,
  CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
 (
@@ -352,7 +355,7 @@ CREATE TABLE [dbo].[Employee](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -367,7 +370,7 @@ CREATE TABLE [dbo].[Person](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_Address]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person_Address]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -384,7 +387,7 @@ CREATE TABLE [dbo].[Person_Address](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_LoginInfo]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person_LoginInfo]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -400,7 +403,7 @@ CREATE TABLE [dbo].[Person_LoginInfo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_Name]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person_Name]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -415,7 +418,7 @@ CREATE TABLE [dbo].[Person_Name](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Person_PhoneNo]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -430,7 +433,7 @@ CREATE TABLE [dbo].[Person_PhoneNo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Policy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Policy]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -446,7 +449,7 @@ CREATE TABLE [dbo].[Policy](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Vehicle]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  Table [dbo].[Vehicle]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -465,41 +468,16 @@ CREATE TABLE [dbo].[Vehicle](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-INSERT [dbo].[Person] ([PersonId], [EmailId], [DateOfBirth]) VALUES (1, N's@s.com', CAST(N'1991-01-01T00:00:00.000' AS DateTime))
+INSERT [dbo].[Policy] ([PolicyID], [Name], [TypeOfPolicy], [Premium]) VALUES (1, N'E0000003', N'ds', CAST(22.00 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Person] ([PersonId], [EmailId], [DateOfBirth]) VALUES (2, N'sam', CAST(N'1990-02-02T00:00:00.000' AS DateTime))
+INSERT [dbo].[Policy] ([PolicyID], [Name], [TypeOfPolicy], [Premium]) VALUES (2, N'E0000004', N'sd', CAST(23.00 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Person] ([PersonId], [EmailId], [DateOfBirth]) VALUES (3, N'1', CAST(N'2023-10-11T00:00:00.000' AS DateTime))
+INSERT [dbo].[Policy] ([PolicyID], [Name], [TypeOfPolicy], [Premium]) VALUES (6, N'E0000001', N'lkjkh', CAST(52.00 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Person_Address] ([PersonID], [HouseNo], [Area], [City], [Zip]) VALUES (2, N'89', N'indra', N'agra', 282001)
+ALTER TABLE [dbo].[Claim]  WITH CHECK ADD  CONSTRAINT [FK_Claim_Claim] FOREIGN KEY([ClaimID])
+REFERENCES [dbo].[Claim] ([ClaimID])
 GO
-INSERT [dbo].[Person_Address] ([PersonID], [HouseNo], [Area], [City], [Zip]) VALUES (3, N'1', N'1', N' 1', 1)
-GO
-INSERT [dbo].[Person_LoginInfo] ([PersonId], [UserName], [Password]) VALUES (1, N's', N's')
-GO
-INSERT [dbo].[Person_LoginInfo] ([PersonId], [UserName], [Password]) VALUES (2, N'sam', N'sam')
-GO
-INSERT [dbo].[Person_LoginInfo] ([PersonId], [UserName], [Password]) VALUES (3, N'1', N'1')
-GO
-INSERT [dbo].[Person_Name] ([PersonID], [FirstName], [LastName]) VALUES (1, N'Saurabh', N'Gupta')
-GO
-INSERT [dbo].[Person_Name] ([PersonID], [FirstName], [LastName]) VALUES (3, N'1', N'1')
-GO
-INSERT [dbo].[Person_PhoneNo] ([PersonID], [PhoneNo]) VALUES (2, 98574)
-GO
-INSERT [dbo].[Person_PhoneNo] ([PersonID], [PhoneNo]) VALUES (3, 1111111111)
-GO
-INSERT [dbo].[Policy] ([PolicyID], [Name], [TypeOfPolicy], [Premium]) VALUES (1, N'Vikesh bhai ki policy', N'jaise unka', CAST(0.00 AS Decimal(8, 2)))
-GO
-INSERT [dbo].[Policy] ([PolicyID], [Name], [TypeOfPolicy], [Premium]) VALUES (2, N'New', N'kjhk', CAST(5.00 AS Decimal(8, 2)))
-GO
-INSERT [dbo].[Policy] ([PolicyID], [Name], [TypeOfPolicy], [Premium]) VALUES (3, N'New 2', N'2W', CAST(500.00 AS Decimal(8, 2)))
-GO
-INSERT [dbo].[Policy] ([PolicyID], [Name], [TypeOfPolicy], [Premium]) VALUES (4, N'New 2', N'2W', CAST(501.00 AS Decimal(8, 2)))
-GO
-INSERT [dbo].[Policy] ([PolicyID], [Name], [TypeOfPolicy], [Premium]) VALUES (5, N'New 2', N'2W', CAST(23.00 AS Decimal(8, 2)))
-GO
-INSERT [dbo].[Policy] ([PolicyID], [Name], [TypeOfPolicy], [Premium]) VALUES (6, N'jhij', N'lkjkh', CAST(52.00 AS Decimal(8, 2)))
+ALTER TABLE [dbo].[Claim] CHECK CONSTRAINT [FK_Claim_Claim]
 GO
 ALTER TABLE [dbo].[Claim]  WITH CHECK ADD  CONSTRAINT [FK_Claim_Customer] FOREIGN KEY([CustomerID])
 REFERENCES [dbo].[Customer] ([CustomerID])
@@ -526,15 +504,15 @@ REFERENCES [dbo].[Claim] ([ClaimID])
 GO
 ALTER TABLE [dbo].[Claim_Documents] CHECK CONSTRAINT [FK_Claim_Documents_Claim]
 GO
-ALTER TABLE [dbo].[Claim_Intimation]  WITH CHECK ADD  CONSTRAINT [FK_ClaimIntimation_Claim] FOREIGN KEY([ClaimID])
+ALTER TABLE [dbo].[Claim_Intimation]  WITH CHECK ADD  CONSTRAINT [FK_Claim_Intimation_Claim] FOREIGN KEY([ClaimID])
 REFERENCES [dbo].[Claim] ([ClaimID])
 GO
-ALTER TABLE [dbo].[Claim_Intimation] CHECK CONSTRAINT [FK_ClaimIntimation_Claim]
+ALTER TABLE [dbo].[Claim_Intimation] CHECK CONSTRAINT [FK_Claim_Intimation_Claim]
 GO
-ALTER TABLE [dbo].[Claim_Intimation]  WITH CHECK ADD  CONSTRAINT [FK_ClaimIntimation_Customer] FOREIGN KEY([CustomerID])
+ALTER TABLE [dbo].[Claim_Intimation]  WITH CHECK ADD  CONSTRAINT [FK_Claim_Intimation_Customer] FOREIGN KEY([CustomerID])
 REFERENCES [dbo].[Customer] ([CustomerID])
 GO
-ALTER TABLE [dbo].[Claim_Intimation] CHECK CONSTRAINT [FK_ClaimIntimation_Customer]
+ALTER TABLE [dbo].[Claim_Intimation] CHECK CONSTRAINT [FK_Claim_Intimation_Customer]
 GO
 ALTER TABLE [dbo].[Customer]  WITH CHECK ADD  CONSTRAINT [FK_Customer_Person] FOREIGN KEY([PersonID])
 REFERENCES [dbo].[Person] ([PersonId])
@@ -601,7 +579,7 @@ REFERENCES [dbo].[Person] ([PersonId])
 GO
 ALTER TABLE [dbo].[Person_PhoneNo] CHECK CONSTRAINT [FK_Person_PhoneNo_Person]
 GO
-/****** Object:  StoredProcedure [dbo].[GetPassword]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPassword]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -619,7 +597,7 @@ BEGIN
 	IN (SELECT PersonId FROM Person WHERE EmailId = @EmailId)	 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddUpdatePolicy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddUpdatePolicy]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -653,7 +631,7 @@ BEGIN
 		END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_AddUserAccount]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_AddUserAccount]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -696,7 +674,7 @@ BEGIN
 			VALUES(@PersonId, @HouseNo, @Area, @City, @Zip)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_DeletePolicy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_DeletePolicy]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -713,7 +691,7 @@ AS
 		DELETE FROM Policy WHERE PolicyID=@PolicyID
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetPassword]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetPassword]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -731,7 +709,7 @@ BEGIN
 	IN (SELECT PersonId FROM Person WHERE EmailId = @EmailId)	 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_GetPolicy]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_GetPolicy]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -748,7 +726,7 @@ AS
 		FROM Policy
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 10/13/2023 12:52:15 PM ******/
+/****** Object:  StoredProcedure [dbo].[SSP_ValidateUser]    Script Date: 10/13/2023 7:23:15 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
