@@ -1,7 +1,5 @@
-﻿using InsuranceManagementAPI.Data;
-using InsuranceManagementAPI.Helper;
+﻿using InsuranceManagementAPI.Helper;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Net;
 using System.Net.Mail;
 
@@ -25,7 +23,7 @@ namespace InsuranceManagementAPI.Controllers
             mailMessage.From = new MailAddress("2022mt93642@wilp.bits-pilani.ac.in");
             mailMessage.To.Add(emailId);
             mailMessage.Subject = "Reset Password";
-            mailMessage.Body = $"The Password for EmailId {emailId} is {password}.";
+            mailMessage.Body = $"Hello,\nThe Password for your account having EmailId {emailId} is {password}.";
 
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Host = "smtp.gmail.com";

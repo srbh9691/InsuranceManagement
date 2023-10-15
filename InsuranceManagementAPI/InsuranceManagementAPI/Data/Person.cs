@@ -6,11 +6,11 @@
 
         public string LastName { get; set; }
 
-        public long PhoneNo { get; set; }
+        public string PhoneNo { get; set; }
 
         public string UserName { get; set; }
 
-        public string Password { get; set; }
+        public bool IsActive { get; set; }
 
         public string EmailId { get; set; }
 
@@ -23,6 +23,12 @@
         public string City { get; set; }
 
         public int Zip { get; set; }
+    }
 
+    public class SavePerson : Person
+    {
+        public string Password { get; set; }
+
+        public bool IsCustomer { get; set; }
     }
 }

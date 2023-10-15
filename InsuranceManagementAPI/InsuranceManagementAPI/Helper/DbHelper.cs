@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 
@@ -197,18 +196,5 @@ namespace InsuranceManagementAPI.Helper
         }
 
         #endregion
-    }
-
-    public class ProcedureParameter
-    {
-        public string Name { get; set; }
-
-        public object Value { get; set; }
-
-        public ProcedureParameter(string name, object value)
-        {
-            Name = name;
-            Value = value;
-        }
     }
 }

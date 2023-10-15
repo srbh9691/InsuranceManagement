@@ -1,4 +1,5 @@
-﻿using InsuranceManagementAPI.Helper;
+﻿using InsuranceManagementAPI.Data;
+using InsuranceManagementAPI.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -27,9 +28,9 @@ namespace InsuranceManagementAPI.Controllers
                 new ProcedureParameter ("@Password", password)
             };
 
-            string? result = await DbHelper.Instance.GetFirstRecord<string>("SSP_ValidateUser", parameters);
+            List<UserLogin> result = await DbHelper.Instance.GetData<UserLogin>("SSP_ValidateUser", parameters);
 
-            if (string.IsNullOrEmpty(result))
+            if (result == null || result.Count < 1)
             {
                 return Unauthorized();
             }
@@ -41,7 +42,7 @@ namespace InsuranceManagementAPI.Controllers
                     new Claim (JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                     new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim (JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                    new Claim ("PersonId", result),
+                    new Claim ("PersonId", result[0].PersonFirstName),
                     new Claim ("UserName", userName),
                 };
 
@@ -55,21 +56,8 @@ namespace InsuranceManagementAPI.Controllers
 
                 string jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                return Ok(new UserLogin(userName, result, jwtToken));
+                return Ok(new UserLogin(result[0].PersonId, result[0].PersonFirstName, jwtToken));
             }
         }
-    }
-
-    public class UserLogin
-    {
-        public UserLogin(string personId, string personName, string accessToken)
-        {
-            PersonId = personId;
-            PersonName = personName;
-            AccessToken = accessToken;
-        }
-        public string PersonId { get; set; }
-        public string PersonName { get; set; }
-        public string AccessToken { get; set; }
     }
 }
