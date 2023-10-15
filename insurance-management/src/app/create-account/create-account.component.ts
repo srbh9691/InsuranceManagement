@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CreateAccountService } from './create-account.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Persondetail } from './personDetail';
-import { Router } from '@angular/router';
+import { Persondetail, UpdatePersondetail } from './personDetail';
 import { DatePipe } from '@angular/common';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-account',
@@ -11,51 +11,134 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./create-account.component.scss'],
 })
 export class CreateAccountComponent implements OnInit {
-  createAcccountForm!: FormGroup;
-  hide = true;
+  createAccountForm!: FormGroup;
+  buttonText: string = 'Add';
+  name!: string;
 
   constructor(
-    private createAccountService: CreateAccountService,
+    private accountService: CreateAccountService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private datePipe: DatePipe
+    private accountDialog: MatDialogRef<CreateAccountComponent>,
+    private datePipe: DatePipe,
+    @Inject(MAT_DIALOG_DATA) public editData: any
   ) {}
 
   ngOnInit(): void {
-    this.createAcccountForm = this.formBuilder.group({
+    const userJson = localStorage.getItem('isCustomer');
+
+    console.log(userJson);
+    this.name = userJson === null || userJson == 'true' ? 'Customer' : 'Employee';
+    console.log(this.name);
+
+    this.createAccountForm = this.formBuilder.group({
       userName: ['', [Validators.required]],
       password: ['', Validators.required],
       emailId: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      phoneNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      phoneNo: ['', [Validators.required]],
     });
+
+    if (this.editData) {
+      this.buttonText = 'Update';
+      this.createAccountForm.controls['userName'].setValue(
+        this.editData.userName
+      );
+      this.createAccountForm.controls['password'].setValue(
+        this.editData.password
+      );
+      this.createAccountForm.controls['emailId'].setValue(
+        this.editData.emailId
+      );
+      this.createAccountForm.controls['dateOfBirth'].setValue(
+        this.editData.dateOfBirth
+      );
+      this.createAccountForm.controls['firstName'].setValue(
+        this.editData.firstName
+      );
+      this.createAccountForm.controls['lastName'].setValue(
+        this.editData.lastName
+      );
+      this.createAccountForm.controls['phoneNo'].setValue(
+        this.editData.phoneNo
+      );
+    }
   }
 
-  createAccount() {
+  addUpdateEmployee() {
+    if (this.editData) {
+      this.updatePerson();
+    } else {
+      this.addPerson();
+    }
+  }
+
+  addPerson() {
     var personData: Persondetail = {
-      userName: this.createAcccountForm.value.userName,
-      password: this.createAcccountForm.value.password,
-      emailId: this.createAcccountForm.value.emailId,
-      dateOfBirth: this.datePipe.transform(this.createAcccountForm.value.dateOfBirth, "yyyy-MM-dd")?.toString(),
-      firstName: this.createAcccountForm.value.firstName,
-      lastName: this.createAcccountForm.value.lastName,
-      phoneNo: this.createAcccountForm.value.phoneNo,
-      houseNo: "1",
-      area: "1",
-      city: " 1",
-      zip: 1
+      userName: this.createAccountForm.value.userName,
+      password: this.createAccountForm.value.password,
+      emailId: this.createAccountForm.value.emailId,
+      isActive: true,
+      dateOfBirth: this.datePipe
+        .transform(this.createAccountForm.value.dateOfBirth, 'yyyy-MM-dd')
+        ?.toString(),
+      firstName: this.createAccountForm.value.firstName,
+      lastName: this.createAccountForm.value.lastName,
+      phoneNo: this.createAccountForm.value.phoneNo,
+      houseNo: '1',
+      area: '1',
+      city: ' 1',
+      zip: 1,
     };
 
-    this.createAccountService.addPerson(personData).subscribe({
+    this.accountService.addPerson(personData).subscribe({
       next: () => {
-        alert('Account Created Successfully. Please login using username and password.');
-        this.router.navigate(['/menu']);
+        this.createAccountForm.reset();
+        this.accountDialog.close();
+        alert(
+          'Account Created Successfully. Please login using username and password.'
+        );
       },
       error: () => {
         alert('Error while creating user.');
       },
     });
+  }
+
+  private updatePerson() {
+    var modelData: UpdatePersondetail = {
+      personId: this.editData.personId,
+      userName: this.createAccountForm.value.userName,
+      password:
+        this.createAccountForm.value.password === undefined
+          ? ''
+          : this.createAccountForm.value.password,
+      emailId: this.createAccountForm.value.emailId,
+      isActive: true,
+      dateOfBirth: this.datePipe
+        .transform(this.createAccountForm.value.dateOfBirth, 'yyyy-MM-dd')
+        ?.toString(),
+      firstName: this.createAccountForm.value.firstName,
+      lastName: this.createAccountForm.value.lastName,
+      phoneNo: this.createAccountForm.value.phoneNo,
+      houseNo: '',
+      area: '',
+      city: '',
+      zip: 0,
+      isCustomer: true,
+    };
+    this.accountService
+      .updatePerson(this.editData.personId, modelData)
+      .subscribe({
+        next: () => {
+          this.createAccountForm.reset();
+          this.accountDialog.close();
+          alert('Account Updated Successfully.');
+        },
+        error: () => {
+          alert('Error while Updating Account.');
+        },
+      });
   }
 }

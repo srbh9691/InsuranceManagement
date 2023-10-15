@@ -17,7 +17,6 @@ export class TemplateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("user is " + localStorage);
     const userJson = localStorage.getItem('currentUser');
     this.name = userJson !== null ? `Hello ${userJson} ` : '';
     //this.autoLogout(120000);
@@ -33,6 +32,9 @@ export class TemplateComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('personId');
+    localStorage.removeItem('isCustomer');
     this.router.navigate(['/login']);
+
   }
 }

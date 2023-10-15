@@ -32,7 +32,6 @@ export class PolicyComponent implements OnInit {
     getAllPolicies() {
         this.policyService.getAllPolicies().subscribe({
             next: (res: PolicyDTO[] | undefined) => {
-                console.log(res)
                 this.dataSource = new MatTableDataSource(res);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
@@ -50,7 +49,6 @@ export class PolicyComponent implements OnInit {
     }
 
     updatePolicyDialog(row: any) {
-        console.log(row);
         const dialogRef = this.dialog.open(PolicyDialogComponent, {
             width: '25%',
             data: row
@@ -58,7 +56,6 @@ export class PolicyComponent implements OnInit {
     }
 
     deletePolicy(row: any) {
-        console.log(row)
         if (confirm("Are you sure you want to delete Polocy ID " + row.policyID + " ?")) {
             this.policyService.deletePolicy(row.policyID).subscribe({
                 next: () => {

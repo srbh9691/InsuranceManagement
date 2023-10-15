@@ -2,14 +2,23 @@
 {
     public class UserLogin
     {
-        public UserLogin(string personId, string personName, string accessToken)
+        public UserLogin(long personId, string personName, bool isCustomer, string accessToken)
         {
             PersonId = personId;
-            PersonFirstName = personName;
+            FirstName = personName;
             AccessToken = accessToken;
+            IsCustomer = isCustomer;
         }
-        public string PersonId { get; set; }
-        public string PersonFirstName { get; set; }
+        public long PersonId { get; set; }
+        public string FirstName { get; set; }
         public string AccessToken { get; set; }
+        public bool IsCustomer { get; set; }
+    }
+
+    public class PersonLoginDetail
+    {
+        public long PersonId { get; set; }
+        public string FirstName { get; set; }
+        public bool IsCustomer { get; set; }
     }
 }

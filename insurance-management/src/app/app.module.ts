@@ -27,6 +27,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
 import { DatePipe } from '@angular/common';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { EmployeeComponent } from './create-account/employee/employee.component';
 
 const MaterialComponents = [
   BrowserModule,
@@ -59,7 +60,8 @@ const MaterialComponents = [
     PolicyComponent,
     PolicyDialogComponent,
     CreateAccountComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    EmployeeComponent
   ],
   imports: [
     MaterialComponents

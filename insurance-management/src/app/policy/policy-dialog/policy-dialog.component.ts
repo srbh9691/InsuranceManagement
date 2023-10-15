@@ -30,7 +30,6 @@ export class PolicyDialogComponent implements OnInit {
     });
 
     if (this.editData) {
-        console.log("Data is " + this.editData.policyID)
       this.buttonText = "Update";
       this.policyForm.controls["policyID"].setValue(this.editData.policyID);
       this.policyForm.controls["name"].setValue(this.editData.name);
@@ -40,11 +39,9 @@ export class PolicyDialogComponent implements OnInit {
   }
 
   addPolicy() {
-    console.log(this.policyForm.value.policyID)
-
     if(this.editData)
     {
-        this.policyID = this.policyForm.value.policyID 
+        this.policyID = this.policyForm.value.policyID
     }
 
     var policyData: PolicyDTO = {

@@ -80,12 +80,12 @@ namespace InsuranceManagementAPI.Controllers
 
         [HttpDelete]
         [Route("{personId}/{isCustomer}")]
-        public async Task<IActionResult> DeletePerson([FromRoute] string personId, [FromRoute] bool isCustomer)
+        public async Task<IActionResult> DeletePerson([FromRoute] string personId, [FromRoute] bool isActive)
         {
             List<ProcedureParameter> parameters = new()
             {
                 new ProcedureParameter ("@PersonId", personId),
-                new ProcedureParameter ("@IsCustomer", isCustomer)
+                new ProcedureParameter ("@IsActive", isActive)
             };
 
             int deletedRecords = await DbHelper.Instance.UpdateData("SSP_MakePersonInactive", parameters);

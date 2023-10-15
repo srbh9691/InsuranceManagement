@@ -18,7 +18,9 @@ export class LoginService {
       .subscribe({
         next: (result: any) => {
           localStorage.setItem("token", result.accessToken);
-          localStorage.setItem("currentUser", result.personName);
+          localStorage.setItem("currentUser", result.firstName);
+          localStorage.setItem('personId', result.personId);
+          localStorage.setItem('isCustomer', result.isCustomer);
           alert("Login Success!");
           this.router.navigate(['/policy']);
         },

@@ -28,7 +28,7 @@ namespace InsuranceManagementAPI.Controllers
                 new ProcedureParameter ("@Password", password)
             };
 
-            List<UserLogin> result = await DbHelper.Instance.GetData<UserLogin>("SSP_ValidateUser", parameters);
+            List<PersonLoginDetail> result = await DbHelper.Instance.GetData<PersonLoginDetail>("SSP_ValidateUser", parameters);
 
             if (result == null || result.Count < 1)
             {
@@ -42,7 +42,7 @@ namespace InsuranceManagementAPI.Controllers
                     new Claim (JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                     new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim (JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                    new Claim ("PersonId", result[0].PersonFirstName),
+                    new Claim ("PersonId", result[0].FirstName),
                     new Claim ("UserName", userName),
                 };
 
@@ -56,7 +56,7 @@ namespace InsuranceManagementAPI.Controllers
 
                 string jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                return Ok(new UserLogin(result[0].PersonId, result[0].PersonFirstName, jwtToken));
+                return Ok(new UserLogin(result[0].PersonId, result[0].FirstName, result[0].IsCustomer, jwtToken));
             }
         }
     }

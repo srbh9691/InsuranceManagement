@@ -25,8 +25,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   forgotPassword(){
-console.log("Email is " +this.emailId)
-
     this.forgotPasswordService.forgotPassword(this.emailId).subscribe({
       next: () => {
         alert('Password Sent Successfully. Please login using username and password.');
