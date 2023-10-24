@@ -11,7 +11,9 @@ export enum ApiPaths {
   Login='/Login',
   Policy='/Policy',
   Person='/Person',
-  ResetPassword='/ResetPassword'
+  ResetPassword='/ResetPassword',
+  MyVehicles='/Vehicle',
+  PurchasePolicy='/PurchasePolicy'
 }
 
 /*

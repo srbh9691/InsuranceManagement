@@ -11,6 +11,7 @@ export interface Persondetail {
   area: string;
   city: string;
   zip: number;
+  isCustomer: boolean;
 }
 export interface UpdatePersondetail {
   personId: string;

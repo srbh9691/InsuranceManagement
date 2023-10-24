@@ -12,8 +12,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateAccountComponent implements OnInit {
   createAccountForm!: FormGroup;
+  createAddressForm!: FormGroup;
   buttonText: string = 'Add';
   name!: string;
+  isLinear = true;
 
   constructor(
     private accountService: CreateAccountService,
@@ -27,7 +29,8 @@ export class CreateAccountComponent implements OnInit {
     const userJson = localStorage.getItem('isCustomer');
 
     console.log(userJson);
-    this.name = userJson === null || userJson == 'true' ? 'Customer' : 'Employee';
+    this.name =
+      userJson === null || userJson == 'true' ? 'Customer' : 'Employee';
     console.log(this.name);
 
     this.createAccountForm = this.formBuilder.group({
@@ -37,6 +40,13 @@ export class CreateAccountComponent implements OnInit {
       dateOfBirth: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+    });
+
+    this.createAddressForm = this.formBuilder.group({
+      houseNo: ['', [Validators.required]],
+      area: ['', Validators.required],
+      city: ['', Validators.required],
+      zip: ['', Validators.required],
       phoneNo: ['', [Validators.required]],
     });
 
@@ -60,7 +70,13 @@ export class CreateAccountComponent implements OnInit {
       this.createAccountForm.controls['lastName'].setValue(
         this.editData.lastName
       );
-      this.createAccountForm.controls['phoneNo'].setValue(
+      this.createAddressForm.controls['houseNo'].setValue(
+        this.editData.houseNo
+      );
+      this.createAddressForm.controls['area'].setValue(this.editData.area);
+      this.createAddressForm.controls['city'].setValue(this.editData.city);
+      this.createAddressForm.controls['zip'].setValue(this.editData.zip);
+      this.createAddressForm.controls['phoneNo'].setValue(
         this.editData.phoneNo
       );
     }
@@ -75,6 +91,9 @@ export class CreateAccountComponent implements OnInit {
   }
 
   addPerson() {
+    var type = this.name === 'Customer' ? true : false
+    console.log(type)
+
     var personData: Persondetail = {
       userName: this.createAccountForm.value.userName,
       password: this.createAccountForm.value.password,
@@ -85,16 +104,18 @@ export class CreateAccountComponent implements OnInit {
         ?.toString(),
       firstName: this.createAccountForm.value.firstName,
       lastName: this.createAccountForm.value.lastName,
-      phoneNo: this.createAccountForm.value.phoneNo,
-      houseNo: '1',
-      area: '1',
-      city: ' 1',
-      zip: 1,
+      phoneNo: this.createAddressForm.value.phoneNo,
+      houseNo: this.createAddressForm.value.houseNo,
+      area: this.createAddressForm.value.area,
+      city: this.createAddressForm.value.city,
+      zip: this.createAddressForm.value.zip,
+      isCustomer: this.name === 'Customer' ? true : false,
     };
 
     this.accountService.addPerson(personData).subscribe({
       next: () => {
         this.createAccountForm.reset();
+        this.createAddressForm.reset();
         this.accountDialog.close();
         alert(
           'Account Created Successfully. Please login using username and password.'
@@ -121,12 +142,12 @@ export class CreateAccountComponent implements OnInit {
         ?.toString(),
       firstName: this.createAccountForm.value.firstName,
       lastName: this.createAccountForm.value.lastName,
-      phoneNo: this.createAccountForm.value.phoneNo,
-      houseNo: '',
-      area: '',
-      city: '',
-      zip: 0,
-      isCustomer: true,
+      phoneNo: this.createAddressForm.value.phoneNo,
+      houseNo: this.createAddressForm.value.houseNo,
+      area: this.createAddressForm.value.area,
+      city: this.createAddressForm.value.city,
+      zip: this.createAddressForm.value.zip,
+      isCustomer: this.name === 'Customer' ? true : false,
     };
     this.accountService
       .updatePerson(this.editData.personId, modelData)

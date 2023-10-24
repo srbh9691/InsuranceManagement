@@ -7,6 +7,8 @@ import { PolicyComponent } from './policy/policy.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { EmployeeComponent } from './create-account/employee/employee.component';
+import { VehicleComponent } from './vehicle/vehicle.component';
+import { MyPoliciesComponent } from './my-policies/my-policies.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,6 +21,8 @@ const routes: Routes = [
     children: [
       { path: 'policy', component: PolicyComponent, canActivate: [AuthGuard]  },
       { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard] },
+      { path: 'Vehicle', component: VehicleComponent, canActivate: [AuthGuard] },
+      { path: 'PurchasePolicy', component: MyPoliciesComponent, canActivate: [AuthGuard] },
         ],
   },
   { path: '**', redirectTo: 'login' },

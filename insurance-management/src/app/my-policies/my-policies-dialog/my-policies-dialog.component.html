@@ -1,0 +1,63 @@
+<h2 mat-dialog-title style="background-color: aqua">Purchase Policy</h2>
+<div mat-dialog-content>
+  <form [formGroup]="purchasePolicyForm">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Vehicle Chesis No</mat-label>
+      <input
+        formControlName="vehicleChesisNo"
+        matInput
+        placeholder="Enter Vehicle Chesis No"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Select Policy</mat-label>
+      <mat-select
+        formControlName="policyID"
+        placeholder="Select Policy"
+        required
+      >
+        <mat-option *ngFor="let policy of policyData" [value]="policy.policyID">
+          {{ policy.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Policy Start Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="policyStartDate"
+        placeholder="Select Policy Start Date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Policy End Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker2"
+        formControlName="policyEndDate"
+        placeholder="Select Policy End Date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Vehicle Insured Declared Value</mat-label>
+      <input
+        formControlName="insuredDeclaredValue"
+        matInput
+        placeholder="Enter Vehicle Insured Declared Value"
+        required
+      />
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-raised-button color="primary" (click)="purchaseNewPolicy()">
+    {{ buttonText }}
+  </button>
+</mat-dialog-actions>

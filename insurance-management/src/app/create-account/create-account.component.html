@@ -1,88 +1,157 @@
-<h2 mat-dialog-title style="background-color: primary">Add New {{name}}</h2>
+<h2 mat-dialog-title style="background-color: primary">Add New {{ name }}</h2>
 <div mat-dialog-content>
-  <form [formGroup]="createAccountForm">
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Username</mat-label>
-      <input
-        formControlName="userName"
-        matInput
-        placeholder="Enter Username"
-        required
-      />
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Password</mat-label>
-      <input
-        formControlName="password"
-        matInput
-        placeholder="Enter New Password"
-      />
-      <mat-hint> Leave Blank to keep the same Password. </mat-hint>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Email Id</mat-label>
-      <input
-        formControlName="emailId"
-        matInput
-        placeholder="Enter Email Id"
-        required
-      />
-      <mat-error *ngIf="!createAccountForm.controls['emailId'].valid">
-        Email Id is required
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>First Name</mat-label>
-      <input
-        formControlName="firstName"
-        matInput
-        placeholder="Enter First Name"
-        required
-      />
-      <mat-error *ngIf="!createAccountForm.controls['firstName'].valid">
-        First Name is required
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Last Name</mat-label>
-      <input
-        formControlName="lastName"
-        matInput
-        placeholder="Enter Last Name"
-        required
-      />
-      <mat-error *ngIf="!createAccountForm.controls['lastName'].valid">
-        Last Name is required
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Phone Number</mat-label>
-      <input
-        formControlName="phoneNo"
-        matInput
-        placeholder="Enter Phone Number"
-        required
-      />
-      <mat-error *ngIf="!createAccountForm.controls['phoneNo'].valid">
-        Last Name is required
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Date of Birth</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        formControlName="dateOfBirth"
-        placeholder="Date of Birth"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </form>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="createAccountForm">
+      <form [formGroup]="createAccountForm">
+        <ng-template matStepLabel>Basic details</ng-template>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            formControlName="userName"
+            matInput
+            placeholder="Enter Username"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            placeholder="Enter New Password"
+          />
+          <mat-hint> Leave Blank to keep the same Password. </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Email Id</mat-label>
+          <input
+            formControlName="emailId"
+            matInput
+            placeholder="Enter Email Id"
+            required
+          />
+          <mat-error *ngIf="!createAccountForm.controls['emailId'].valid">
+            Email Id is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input
+            formControlName="firstName"
+            matInput
+            placeholder="Enter First Name"
+            required
+          />
+          <mat-error *ngIf="!createAccountForm.controls['firstName'].valid">
+            First Name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            formControlName="lastName"
+            matInput
+            placeholder="Enter Last Name"
+            required
+          />
+          <mat-error *ngIf="!createAccountForm.controls['lastName'].valid">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Date of Birth</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="dateOfBirth"
+            placeholder="Date of Birth"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div>
+          <mat-dialog-actions align="end">
+            <button mat-raised-button color="accent" matStepperNext>Next</button>
+            <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+          </mat-dialog-actions>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="createAddressForm">
+      <form [formGroup]="createAddressForm">
+        <ng-template matStepLabel>Address Details</ng-template>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>House No</mat-label>
+          <input
+            formControlName="houseNo"
+            matInput
+            placeholder="Enter House No"
+            required
+          />
+          <mat-error *ngIf="!createAddressForm.controls['houseNo'].valid">
+            House No is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Area</mat-label>
+          <input
+            formControlName="area"
+            matInput
+            placeholder="Enter Area Name"
+          />
+          <mat-error *ngIf="!createAddressForm.controls['area'].valid">
+            Area name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>City</mat-label>
+          <input
+            formControlName="city"
+            matInput
+            placeholder="Enter City"
+            required
+          />
+          <mat-error *ngIf="!createAddressForm.controls['city'].valid">
+            City name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Zip</mat-label>
+          <input
+            formControlName="zip"
+            matInput
+            placeholder="Enter Zip code"
+            required
+          />
+          <mat-error *ngIf="!createAddressForm.controls['zip'].valid">
+            Zip is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input
+            formControlName="phoneNo"
+            matInput
+            placeholder="Enter Phone Number"
+            required
+          />
+          <mat-error *ngIf="!createAddressForm.controls['phoneNo'].valid">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+        <div>
+          <mat-dialog-actions align="end">
+            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+            <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+            <button mat-raised-button color="primary" (click)="addUpdateEmployee()">
+              {{ buttonText }}
+            </button>
+          </mat-dialog-actions>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
 </div>
-<mat-dialog-actions align="end">
-  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
-  <button mat-raised-button color="primary" (click)="addUpdateEmployee()">
-    {{ buttonText }}
-  </button>
-</mat-dialog-actions>

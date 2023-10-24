@@ -1,0 +1,56 @@
+<div class="action-button-container" align="end">
+  <button mat-raised-button color="primary" (click)="purchasePolicy()" class="action-button">
+    <mat-icon>person_add</mat-icon>
+  </button>
+  <button
+    mat-raised-button color="accent" (click)="getMyPolicies()" class="action-button">
+    <mat-icon>refresh</mat-icon>
+  </button>
+</div>
+
+<mat-form-field class="full-width">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Vehicle Chesis No" #input/>
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="VehicleChesisNo">
+      <th mat-header-cell *matHeaderCellDef>Vehicle Chesis No</th>
+      <td mat-cell *matCellDef="let element">{{ element.vehicleChesisNo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="CustomerPolicyID">
+      <th mat-header-cell *matHeaderCellDef>Customer Policy ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.customerPolicyID }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="PolicyStartDate">
+      <th mat-header-cell *matHeaderCellDef>Policy Start Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.policyStartDate  | date :  "MM/dd/y"}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="PolicyEndDate">
+      <th mat-header-cell *matHeaderCellDef>Policy End Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.policyEndDate  | date :  "MM/dd/y"}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="InsuredDeclaredValue">
+      <th mat-header-cell *matHeaderCellDef>Insured Declared Value</th>
+      <td mat-cell *matCellDef="let element">{{ element.insuredDeclaredValue }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of vehicles"
+  ></mat-paginator>
+</div>
+

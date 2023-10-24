@@ -28,6 +28,13 @@ import { DatePipe } from '@angular/common';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { EmployeeComponent } from './create-account/employee/employee.component';
+import { MatStepperModule} from '@angular/material/stepper';
+import { VehicleComponent } from './vehicle/vehicle.component';
+import { VehicleDialogComponent } from './vehicle/vehicle-dialog/vehicle-dialog.component';
+import { MyPoliciesComponent } from './my-policies/my-policies.component';
+import { MyPolicyDialogComponent } from './my-policies/my-policies-dialog/my-policies-dialog.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 const MaterialComponents = [
   BrowserModule,
@@ -49,7 +56,10 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatDialogModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatStepperModule,
+  MatOptionModule,
+  MatSelectModule
 ];
 
 @NgModule({
@@ -61,7 +71,11 @@ const MaterialComponents = [
     PolicyDialogComponent,
     CreateAccountComponent,
     ForgotPasswordComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    VehicleComponent,
+    VehicleDialogComponent,
+    MyPoliciesComponent,
+    MyPolicyDialogComponent
   ],
   imports: [
     MaterialComponents

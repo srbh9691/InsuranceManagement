@@ -1,0 +1,85 @@
+<div class="action-button-container" align="end">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="addVehicleDialog()"
+    class="action-button"
+  >
+    <mat-icon>person_add</mat-icon>
+  </button>
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="getAllVehicles()"
+    class="action-button"
+  >
+    <mat-icon>refresh</mat-icon>
+  </button>
+</div>
+
+<mat-form-field class="full-width">
+  <mat-label>Filter</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ex. Vehicle Chesis No"
+    #input
+  />
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="VehicleChesisNo">
+      <th mat-header-cell *matHeaderCellDef>Vehicle Chesis No</th>
+      <td mat-cell *matCellDef="let element">{{ element.vehicleChesisNo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="RegistrationNumber">
+      <th mat-header-cell *matHeaderCellDef>Registration Number</th>
+      <td mat-cell *matCellDef="let element">{{ element.registrationNumber }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="TypeOfVehicle">
+      <th mat-header-cell *matHeaderCellDef>Type Of Vehicle</th>
+      <td mat-cell *matCellDef="let element">{{ element.typeOfVehicle }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Make">
+      <th mat-header-cell *matHeaderCellDef>Make</th>
+      <td mat-cell *matCellDef="let element">{{ element.make }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Model">
+      <th mat-header-cell *matHeaderCellDef>Model</th>
+      <td mat-cell *matCellDef="let element">{{ element.model }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="PurchaseDate">
+      <th mat-header-cell *matHeaderCellDef>Purchase Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.purchaseDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="updateVehicleDialog(element)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteVehicle(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of vehicles"
+  ></mat-paginator>
+</div>

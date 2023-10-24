@@ -1,0 +1,68 @@
+<h2 mat-dialog-title style="background-color: aqua">Add Vehicle</h2>
+<div mat-dialog-content>
+  <form [formGroup]="vehicleForm">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Vehicle Chesis No</mat-label>
+      <input
+        formControlName="vehicleChesisNo"
+        matInput
+        placeholder="Enter Vehicle Chesis No"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Registration Number</mat-label>
+      <input
+        formControlName="registrationNumber"
+        matInput
+        placeholder="Enter Registration Number"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Type Of Vehicle</mat-label>
+      <input
+        formControlName="typeOfVehicle"
+        matInput
+        placeholder="Enter Type Of Vehicle"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Make</mat-label>
+      <input
+        formControlName="make"
+        matInput
+        placeholder="Enter Make"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Model</mat-label>
+      <input
+        formControlName="model"
+        matInput
+        placeholder="Enter Model"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Date of Purchase</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="purchaseDate"
+        placeholder="Purchase Date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-raised-button color="primary" (click)="addUpdateVehicle()">
+    {{ buttonText }}
+  </button>
+</mat-dialog-actions>
