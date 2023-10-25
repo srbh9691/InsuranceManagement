@@ -1,21 +1,38 @@
-<h2 mat-dialog-title style="background-color: aqua;">Add User</h2>
+<h2 mat-dialog-title style="background-color: aqua">Add User</h2>
 <div mat-dialog-content>
   <form [formGroup]="policyForm">
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Policy Name</mat-label>
-      <input formControlName="name" matInput placeholder="Enter Policy Name" required />
-    </mat-form-field>    
+      <input
+        formControlName="name"
+        matInput
+        placeholder="Enter Policy Name"
+        required
+      />
+    </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Type Of Policy</mat-label>
-      <input formControlName="typeOfPolicy" matInput placeholder="Enter Type Of Policy" required />
+      <input
+        formControlName="typeOfPolicy"
+        matInput
+        placeholder="Enter Type Of Policy"
+        required
+      />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Premium</mat-label>
-      <input formControlName="premium" matInput placeholder="Enter Premium" required />
+      <input
+        formControlName="premium"
+        matInput
+        placeholder="Enter Premium"
+        required
+      />
     </mat-form-field>
   </form>
 </div>
 <mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
-  <button mat-raised-button color="primary" (click)="addPolicy()">{{buttonText}}</button>
+  <button mat-raised-button color="primary" (click)="addPolicy()">
+    {{ buttonText }}
+  </button>
 </mat-dialog-actions>

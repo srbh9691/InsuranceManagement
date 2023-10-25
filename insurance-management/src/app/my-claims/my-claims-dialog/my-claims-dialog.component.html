@@ -1,0 +1,83 @@
+<h2 mat-dialog-title style="background-color: aqua">Purchase Policy</h2>
+<div mat-dialog-content>
+  <form [formGroup]="addClaimForm">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Customer Policy ID</mat-label>
+      <mat-select
+        formControlName="customerPolicyID"
+        placeholder="Select Customer Policy ID"
+        required
+      >
+        <mat-option
+          *ngFor="let policy of purchasedPolicies"
+          [value]="policy.customerPolicyID"
+        >
+          {{ policy.customerPolicyID }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Claim Type</mat-label>
+      <mat-select
+        formControlName="claimType"
+        placeholder="Select Vehicle Type"
+        required
+      >
+        <mat-option *ngFor="let type of vehicleTypes" [value]="type.value">
+          {{ type.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Claim Amount</mat-label>
+      <input
+        formControlName="claimAmount"
+        matInput
+        placeholder="Enter Claim Amount"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Damage Details</mat-label>
+      <input
+        formControlName="damageDetails"
+        matInput
+        placeholder="Enter Damage Details"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Account No</mat-label>
+      <input
+        formControlName="accountNo"
+        matInput
+        placeholder="Enter Account No"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>IFSC Code</mat-label>
+      <input
+        formControlName="ifscCode"
+        matInput
+        placeholder="Enter IFSC Code"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Account Holder Name</mat-label>
+      <input
+        formControlName="accountHolderName"
+        matInput
+        placeholder="Enter Account Holder Name"
+        required
+      />
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-raised-button color="primary" (click)="purchaseNewPolicy()">
+    {{ buttonText }}
+  </button>
+</mat-dialog-actions>

@@ -4,16 +4,17 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:5250/api'
+  baseUrl: 'http://localhost:5250/api',
 };
 
 export enum ApiPaths {
-  Login='/Login',
-  Policy='/Policy',
-  Person='/Person',
-  ResetPassword='/ResetPassword',
-  MyVehicles='/Vehicle',
-  PurchasePolicy='/PurchasePolicy'
+  Login = '/Login',
+  Policy = '/Policy',
+  Person = '/Person',
+  ResetPassword = '/ResetPassword',
+  MyVehicles = '/Vehicle',
+  PurchasePolicy = '/PurchasePolicy',
+  MyClaims = '/Claim',
 }
 
 /*

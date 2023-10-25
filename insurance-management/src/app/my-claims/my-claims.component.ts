@@ -1,59 +1,60 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MyPoliciesService } from './my-policies.service';
+import { MyClaimsService } from './my-claims.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { GetMyPolicyDTO } from './myPoliciesDTO';
-import { MyPolicyDialogComponent } from './my-policies-dialog/my-policies-dialog.component';
+import { GetClaim } from './myClaimsDTO';
+import { MyClaimsDialogComponent } from './my-claims-dialog/my-claims-dialog.component';
 
 @Component({
-  selector: 'app-my-policies',
-  templateUrl: './my-policies.component.html',
-  styleUrls: ['./my-policies.component.scss'],
+  selector: 'app-my-claims',
+  templateUrl: './my-claims.component.html',
+  styleUrls: ['./my-claims.component.scss'],
 })
-export class MyPoliciesComponent implements OnInit {
+export class MyClaimsComponent implements OnInit {
   constructor(
-    private myPoliciesService: MyPoliciesService,
+    private myClaimsService: MyClaimsService,
     public dialog: MatDialog
   ) {
     this.personId = localStorage.getItem('personId');
-    this.getMyPolicies();
+    this.getMyClaims();
   }
 
   displayedColumns: string[] = [
-    'VehicleChesisNo',
+    'ClaimID',
     'CustomerPolicyID',
-    'PolicyStartDate',
-    'PolicyEndDate',
-    'InsuredDeclaredValue',
-    'Status',
+    'ClaimType',
+    'ClaimAmount',
+    'SettlementStatus',
+    'ApprovedBy',
+    'ApprovedAmount',
   ];
 
-  dataSource!: MatTableDataSource<GetMyPolicyDTO>;
+  dataSource!: MatTableDataSource<GetClaim>;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   personId!: any;
 
   ngOnInit(): void {
-    this.getMyPolicies();
+    this.getMyClaims();
   }
 
-  getMyPolicies() {
-    this.myPoliciesService.getAllPurchasedPolicies(this.personId).subscribe({
-      next: (res: GetMyPolicyDTO[] | undefined) => {
+  getMyClaims() {
+    this.myClaimsService.getAllClaims(this.personId).subscribe({
+      next: (res: GetClaim[] | undefined) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
       error: () => {
-        alert('Error while reading policies!');
+        alert('Error while reading claims!');
       },
     });
   }
 
-  purchasePolicy() {
-    const dialogRef = this.dialog.open(MyPolicyDialogComponent, {
+  addClaim() {
+    const dialogRef = this.dialog.open(MyClaimsDialogComponent, {
       width: '25%',
     });
   }

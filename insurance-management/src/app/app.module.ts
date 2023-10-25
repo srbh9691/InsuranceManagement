@@ -23,18 +23,20 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { PolicyDialogComponent } from './policy/policy-dialog/policy-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreateAccountComponent } from './create-account/create-account.component';
-import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { EmployeeComponent } from './create-account/employee/employee.component';
-import { MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { VehicleDialogComponent } from './vehicle/vehicle-dialog/vehicle-dialog.component';
 import { MyPoliciesComponent } from './my-policies/my-policies.component';
 import { MyPolicyDialogComponent } from './my-policies/my-policies-dialog/my-policies-dialog.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MyClaimsComponent } from './my-claims/my-claims.component';
+import { MyClaimsDialogComponent } from './my-claims/my-claims-dialog/my-claims-dialog.component';
 
 const MaterialComponents = [
   BrowserModule,
@@ -59,7 +61,7 @@ const MaterialComponents = [
   MatNativeDateModule,
   MatStepperModule,
   MatOptionModule,
-  MatSelectModule
+  MatSelectModule,
 ];
 
 @NgModule({
@@ -75,11 +77,11 @@ const MaterialComponents = [
     VehicleComponent,
     VehicleDialogComponent,
     MyPoliciesComponent,
-    MyPolicyDialogComponent
+    MyPolicyDialogComponent,
+    MyClaimsComponent,
+    MyClaimsDialogComponent,
   ],
-  imports: [
-    MaterialComponents
-  ],
+  imports: [MaterialComponents],
   providers: [
     DatePipe,
     {
@@ -88,6 +90,6 @@ const MaterialComponents = [
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

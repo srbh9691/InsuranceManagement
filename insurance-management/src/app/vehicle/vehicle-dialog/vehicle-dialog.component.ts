@@ -21,11 +21,11 @@ export class VehicleDialogComponent implements OnInit {
     private vehicleService: VehicleService,
     private vehicleDialog: MatDialogRef<VehicleDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public editData: any
-  ) {}
+  ) {
+    this.personId = localStorage.getItem('personId');
+  }
 
   ngOnInit(): void {
-    this.personId = localStorage.getItem('personId');
-
     this.vehicleForm = this.formBuilder.group({
       vehicleChesisNo: ['', Validators.required],
       registrationNumber: ['', Validators.required],
@@ -55,7 +55,6 @@ export class VehicleDialogComponent implements OnInit {
   }
 
   addUpdateVehicle() {
-    console.log('add');
     var vehicleData: VehicleDTO = {
       vehicleChesisNo: this.vehicleForm.value.vehicleChesisNo,
       registrationNumber: this.vehicleForm.value.registrationNumber,

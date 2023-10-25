@@ -35,6 +35,5 @@ export class TemplateComponent implements OnInit {
     localStorage.removeItem('personId');
     localStorage.removeItem('isCustomer');
     this.router.navigate(['/login']);
-
   }
 }

@@ -6,27 +6,37 @@ import { ApiPaths } from 'src/environments/environment';
 import { LoginResponse } from './LoginResponse';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   loginUser(userName: string, password: string) {
     const headers = { 'content-type': 'application/json' };
-    return this.http.post<LoginResponse>(environment.baseUrl + ApiPaths.Login + '?userName='+userName+'&password='+password, { headers: headers })
+    return this.http
+      .post<LoginResponse>(
+        environment.baseUrl +
+          ApiPaths.Login +
+          '?userName=' +
+          userName +
+          '&password=' +
+          password,
+        { headers: headers }
+      )
       .subscribe({
         next: (result: any) => {
-          localStorage.setItem("token", result.accessToken);
-          localStorage.setItem("currentUser", result.firstName);
+          localStorage.setItem('token', result.accessToken);
+          localStorage.setItem('currentUser', result.firstName);
           localStorage.setItem('personId', result.personId);
           localStorage.setItem('isCustomer', result.isCustomer);
-          alert("Login Success!");
+          alert('Login Success!');
           this.router.navigate(['/policy']);
         },
         error: (err: any) => {
-          alert("Login failed. Please enter valid credentials or try again after some time.");
-        }
+          alert(
+            'Login failed. Please enter valid credentials or try again after some time.'
+          );
+        },
       });
   }
 }

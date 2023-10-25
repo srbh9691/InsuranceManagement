@@ -28,10 +28,8 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit(): void {
     const userJson = localStorage.getItem('isCustomer');
 
-    console.log(userJson);
     this.name =
       userJson === null || userJson == 'true' ? 'Customer' : 'Employee';
-    console.log(this.name);
 
     this.createAccountForm = this.formBuilder.group({
       userName: ['', [Validators.required]],
@@ -91,8 +89,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   addPerson() {
-    var type = this.name === 'Customer' ? true : false
-    console.log(type)
+    var type = this.name === 'Customer' ? true : false;
 
     var personData: Persondetail = {
       userName: this.createAccountForm.value.userName,

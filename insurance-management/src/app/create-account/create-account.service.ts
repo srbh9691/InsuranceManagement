@@ -28,11 +28,14 @@ export class CreateAccountService {
   }
 
   getAllEmployees() {
-    return this.http.get<any>(environment.baseUrl + ApiPaths.Person + "/GetEmployees");
+    return this.http.get<any>(
+      environment.baseUrl + ApiPaths.Person + '/GetEmployees'
+    );
   }
 
   makePersonInactive(personId: any, isCustomer: boolean) {
-    return this.http.delete(environment.baseUrl + ApiPaths.Person + "/" + personId + "/" + isCustomer);
+    return this.http.delete(
+      environment.baseUrl + ApiPaths.Person + '/' + personId + '/' + isCustomer
+    );
   }
-
 }
