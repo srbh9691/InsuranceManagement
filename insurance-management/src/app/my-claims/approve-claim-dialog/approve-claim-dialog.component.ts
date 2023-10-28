@@ -35,9 +35,7 @@ export class ApproveClaimDialogComponent implements OnInit {
 
     if (this.editData) {
       this.approveClaimForm.controls['claimID'].setValue(this.editData.claimID);
-      this.approveClaimForm.controls['claimID'].disable();
       this.approveClaimForm.controls['approvedBy'].setValue(this.personName);
-      this.approveClaimForm.controls['approvedBy'].disable();
       this.approveClaimForm.controls['claimAmount'].setValue(
         this.editData.claimAmount
       );

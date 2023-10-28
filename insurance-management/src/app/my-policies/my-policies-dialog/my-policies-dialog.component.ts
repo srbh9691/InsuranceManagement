@@ -5,6 +5,8 @@ import { MyPoliciesService } from '../my-policies.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PolicyDTO } from 'src/app/policy/policyDTO';
 import { PolicyService } from 'src/app/policy/policy.service';
+import { VehicleService } from 'src/app/vehicle/vehicle.service';
+import { VehicleDTO } from 'src/app/vehicle/vehicleDTO';
 
 @Component({
   selector: 'app-user-dialog',
@@ -17,12 +19,14 @@ export class MyPolicyDialogComponent implements OnInit {
   newUserData!: AddMyPolicyDTO;
   buttonText: string = 'Add';
   policyData: PolicyDTO[] = [];
+  vehicleData: VehicleDTO[] = [];
   personId!: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private purchasePolicyService: MyPoliciesService,
     private policyService: PolicyService,
+    private vehicleService: VehicleService,
     private myPolicyDialogComponent: MatDialogRef<MyPolicyDialogComponent>
   ) {
     this.personId = localStorage.getItem('personId');
@@ -30,6 +34,7 @@ export class MyPolicyDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPolicies();
+    this.getAllVehicleChesisNo();
     this.purchasePolicyForm = this.formBuilder.group({
       vehicleChesisNo: ['', Validators.required],
       policyID: ['', Validators.required],
@@ -55,10 +60,10 @@ export class MyPolicyDialogComponent implements OnInit {
         next: () => {
           this.purchasePolicyForm.reset();
           this.myPolicyDialogComponent.close();
-          alert('Vehicle Added Successfully.');
+          alert('Policy purchased Successfully.');
         },
         error: () => {
-          alert('Error while adding Policy.');
+          alert('Error while purchasing Policy.');
         },
       });
   }
@@ -67,6 +72,17 @@ export class MyPolicyDialogComponent implements OnInit {
     this.policyService.getAllPolicies().subscribe({
       next: (res: PolicyDTO[]) => {
         this.policyData = res;
+      },
+      error: () => {
+        alert('Error while reading policies!');
+      },
+    });
+  }
+
+  getAllVehicleChesisNo() {
+    this.vehicleService.getAllVehicles(this.personId).subscribe({
+      next: (res: VehicleDTO[]) => {
+        this.vehicleData = res;
       },
       error: () => {
         alert('Error while reading policies!');

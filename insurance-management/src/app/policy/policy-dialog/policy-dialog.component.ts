@@ -4,6 +4,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PolicyDTO } from '../policyDTO';
 import { PolicyService } from '../policy.service';
 
+interface DropDownItem {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-user-dialog',
   templateUrl: './policy-dialog.component.html',
@@ -69,4 +74,9 @@ export class PolicyDialogComponent implements OnInit {
       },
     });
   }
+
+  vehicleTypes: DropDownItem[] = [
+    { value: '2 Wheeler', viewValue: '2 Wheeler' },
+    { value: '4 Wheeler', viewValue: '4 Wheeler' },
+  ];
 }

@@ -3,12 +3,15 @@
   <form [formGroup]="purchasePolicyForm">
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Vehicle Chesis No</mat-label>
-      <input
+      <mat-select
         formControlName="vehicleChesisNo"
-        matInput
-        placeholder="Enter Vehicle Chesis No"
+        placeholder="Select Vehicle Chesis No"
         required
-      />
+      >
+        <mat-option *ngFor="let vehicle of vehicleData" [value]="vehicle.vehicleChesisNo">
+          {{ vehicle.vehicleChesisNo }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Select Policy</mat-label>

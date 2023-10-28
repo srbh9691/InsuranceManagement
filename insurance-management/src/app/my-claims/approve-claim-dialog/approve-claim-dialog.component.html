@@ -3,11 +3,11 @@
   <form [formGroup]="approveClaimForm">
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Claim ID</mat-label>
-      <input formControlName="claimID" matInput required />
+      <input readonly formControlName="claimID" matInput required />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Approved By</mat-label>
-      <input formControlName="approvedBy" matInput required />
+      <input readonly formControlName="approvedBy" matInput required />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Claim Amount</mat-label>
@@ -21,6 +21,9 @@
         placeholder="Enter Approved Amount"
         required
       />
+      <mat-error *ngIf="!approveClaimForm.controls['approvedAmount'].valid">
+        Approved Amount is required
+      </mat-error>
     </mat-form-field>
   </form>
 </div>

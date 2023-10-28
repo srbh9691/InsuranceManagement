@@ -21,12 +21,15 @@
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Type Of Vehicle</mat-label>
-      <input
-        formControlName="typeOfVehicle"
-        matInput
-        placeholder="Enter Type Of Vehicle"
-        required
-      />
+      <mat-select
+      formControlName="typeOfVehicle"
+      placeholder="Select Type Of Vehicle"
+      required
+    >
+      <mat-option *ngFor="let type of vehicleTypes" [value]="type.value">
+        {{ type.viewValue }}
+      </mat-option>
+    </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Make</mat-label>

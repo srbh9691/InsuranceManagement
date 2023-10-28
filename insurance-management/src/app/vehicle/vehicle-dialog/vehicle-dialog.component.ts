@@ -4,6 +4,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { VehicleDTO } from '../vehicleDTO';
 import { VehicleService } from '../vehicle.service';
 
+interface DropDownItem {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-user-dialog',
   templateUrl: './vehicle-dialog.component.html',
@@ -88,4 +93,9 @@ export class VehicleDialogComponent implements OnInit {
       });
     }
   }
+
+  vehicleTypes: DropDownItem[] = [
+    { value: '2 Wheeler', viewValue: '2 Wheeler' },
+    { value: '4 Wheeler', viewValue: '4 Wheeler' },
+  ];
 }

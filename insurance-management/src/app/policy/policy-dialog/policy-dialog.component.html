@@ -12,12 +12,15 @@
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Type Of Policy</mat-label>
-      <input
+      <mat-select
         formControlName="typeOfPolicy"
-        matInput
-        placeholder="Enter Type Of Policy"
+        placeholder="Select Type Of Policy"
         required
-      />
+      >
+        <mat-option *ngFor="let type of vehicleTypes" [value]="type.value">
+          {{ type.viewValue }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Premium</mat-label>

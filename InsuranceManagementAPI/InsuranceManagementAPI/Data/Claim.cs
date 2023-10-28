@@ -27,6 +27,6 @@
     public class ApproveClaim
     {
         public string ClaimID { get; set; }
-        public long ApprovedAmount { get; set; }
+        public decimal ApprovedAmount { get; set; }
     }
 }
