@@ -18,7 +18,6 @@ export class MyPoliciesComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.personId = localStorage.getItem('personId');
-    this.getMyPolicies();
   }
 
   displayedColumns: string[] = [

@@ -5,6 +5,8 @@
         public string CustomerPolicyID { get; set; }
         public string ClaimType { get; set; }
         public decimal ClaimAmount { get; set; }
+        public string DamageDetails { get; set; }
+
     }
 
     public class GetClaim : Claim
@@ -17,9 +19,14 @@
 
     public class AddClaim : Claim
     {
-        public string DamageDetails { get; set; }
         public string IFSCCode { get; set; }
         public long AccountNo { get; set; }
         public string AccountHolderName { get; set; }
+    }
+
+    public class ApproveClaim
+    {
+        public string ClaimID { get; set; }
+        public long ApprovedAmount { get; set; }
     }
 }

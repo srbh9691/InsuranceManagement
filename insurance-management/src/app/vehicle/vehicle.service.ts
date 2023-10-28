@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ApiPaths } from 'src/environments/environment';
 import { VehicleDTO } from './vehicleDTO';
+import { AuthService } from '../shared/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +11,12 @@ import { VehicleDTO } from './vehicleDTO';
 export class VehicleService {
   private headers = { 'content-type': 'application/json' };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getAllVehicles(person: string): any {
+    if (this.authService.IsEmployee()) {
+      person = '0';
+    }
     return this.http.get<any>(
       environment.baseUrl + ApiPaths.MyVehicles + '/' + person
     );

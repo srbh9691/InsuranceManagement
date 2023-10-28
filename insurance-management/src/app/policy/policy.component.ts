@@ -1,3 +1,4 @@
+import { AuthService } from './../shared/auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PolicyService } from './policy.service';
 import { PolicyDTO } from './policyDTO';
@@ -13,24 +14,30 @@ import { PolicyDialogComponent } from './policy-dialog/policy-dialog.component';
   styleUrls: ['./policy.component.scss'],
 })
 export class PolicyComponent implements OnInit {
-  constructor(private policyService: PolicyService, public dialog: MatDialog) {
-    this.getAllPolicies();
-  }
+  constructor(
+    private policyService: PolicyService,
+    public dialog: MatDialog,
+    private authService: AuthService
+  ) {}
 
   displayedColumns: string[] = [
     'PolicyID',
     'PolicyName',
     'TypeOFPolicy',
     'Premium',
-    'action',
   ];
 
   dataSource!: MatTableDataSource<PolicyDTO>;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  isEmployee!: boolean;
 
   ngOnInit(): void {
     this.getAllPolicies();
+    this.isEmployee = this.authService.IsEmployee();
+    if (this.isEmployee) {
+      this.displayedColumns.push('action');
+    }
   }
 
   getAllPolicies() {

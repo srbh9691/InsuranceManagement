@@ -6,6 +6,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { GetClaim } from './myClaimsDTO';
 import { MyClaimsDialogComponent } from './my-claims-dialog/my-claims-dialog.component';
+import { AuthService } from '../shared/auth.service';
+import { ApproveClaimDialogComponent } from './approve-claim-dialog/approve-claim-dialog.component';
 
 @Component({
   selector: 'app-my-claims',
@@ -15,10 +17,9 @@ import { MyClaimsDialogComponent } from './my-claims-dialog/my-claims-dialog.com
 export class MyClaimsComponent implements OnInit {
   constructor(
     private myClaimsService: MyClaimsService,
-    public dialog: MatDialog
+    public dialog: MatDialog, private authService: AuthService
   ) {
     this.personId = localStorage.getItem('personId');
-    this.getMyClaims();
   }
 
   displayedColumns: string[] = [
@@ -38,6 +39,11 @@ export class MyClaimsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMyClaims();
+    if(this.authService.IsEmployee())
+    {
+      this.displayedColumns.push('DamageDetails')
+      this.displayedColumns.push('Action')
+    }
   }
 
   getMyClaims() {
@@ -56,6 +62,13 @@ export class MyClaimsComponent implements OnInit {
   addClaim() {
     const dialogRef = this.dialog.open(MyClaimsDialogComponent, {
       width: '25%',
+    });
+  }
+
+  approve(row: GetClaim) {
+    const dialogRef = this.dialog.open(ApproveClaimDialogComponent, {
+      width: '25%',
+      data: row,
     });
   }
 

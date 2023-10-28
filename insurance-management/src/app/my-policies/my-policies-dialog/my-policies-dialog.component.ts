@@ -26,10 +26,10 @@ export class MyPolicyDialogComponent implements OnInit {
     private myPolicyDialogComponent: MatDialogRef<MyPolicyDialogComponent>
   ) {
     this.personId = localStorage.getItem('personId');
-    this.getAllPolicies();
   }
 
   ngOnInit(): void {
+    this.getAllPolicies();
     this.purchasePolicyForm = this.formBuilder.group({
       vehicleChesisNo: ['', Validators.required],
       policyID: ['', Validators.required],

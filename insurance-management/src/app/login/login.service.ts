@@ -29,7 +29,6 @@ export class LoginService {
           localStorage.setItem('currentUser', result.firstName);
           localStorage.setItem('personId', result.personId);
           localStorage.setItem('isCustomer', result.isCustomer);
-          alert('Login Success!');
           this.router.navigate(['/policy']);
         },
         error: (err: any) => {

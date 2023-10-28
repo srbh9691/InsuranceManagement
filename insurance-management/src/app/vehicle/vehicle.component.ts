@@ -18,7 +18,6 @@ export class VehicleComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.personId = localStorage.getItem('personId');
-    this.getAllVehicles();
   }
 
   displayedColumns: string[] = [

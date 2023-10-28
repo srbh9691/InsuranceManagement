@@ -1,0 +1,32 @@
+<h2 mat-dialog-title style="background-color: aqua">Approve Claim</h2>
+<div mat-dialog-content>
+  <form [formGroup]="approveClaimForm">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Claim ID</mat-label>
+      <input formControlName="claimID" matInput required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Approved By</mat-label>
+      <input formControlName="approvedBy" matInput required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Claim Amount</mat-label>
+      <input readonly formControlName="claimAmount" matInput required />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Approved Amount</mat-label>
+      <input
+        formControlName="approvedAmount"
+        matInput
+        placeholder="Enter Approved Amount"
+        required
+      />
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-raised-button color="primary" (click)="approveClaim()">
+    Approve
+  </button>
+</mat-dialog-actions>

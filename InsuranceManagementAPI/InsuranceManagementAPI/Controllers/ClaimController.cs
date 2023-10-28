@@ -16,12 +16,12 @@ namespace InsuranceManagementAPI.Controllers
             {
                 new ProcedureParameter ("@PersonId", personId)
             };
-            return Ok(await DbHelper.Instance.GetData<GetClaim>("SSP_GetClaim", parameters));
+            return Ok(await DbHelper.Instance.GetData<GetClaim>("SSP_GetClaims", parameters));
         }
 
         [HttpPost]
         [Route("{personId}")]
-        public async Task<IActionResult> AddVehicle([FromRoute] string personId, AddClaim claim)
+        public async Task<IActionResult> AddClaim([FromRoute] string personId, AddClaim claim)
         {
             List<ProcedureParameter> parameters = new()
             {
@@ -38,6 +38,22 @@ namespace InsuranceManagementAPI.Controllers
             int insertedRecords = await DbHelper.Instance.UpdateData("SSP_AddClaim", parameters);
 
             return insertedRecords >= 1 ? Ok(claim) : this.Content("Error creating new Claim");
+        }
+
+        [HttpPut]
+        [Route("{personId}")]
+        public async Task<IActionResult> ApproveClaim([FromRoute] string personId, ApproveClaim approveClaim)
+        {
+            List<ProcedureParameter> parameters = new()
+            {
+                new ProcedureParameter ("@PersonId", personId),
+                new ProcedureParameter ("@ClaimID", approveClaim.ClaimID),
+                new ProcedureParameter ("@ApprovedAmount", approveClaim.ApprovedAmount),
+            };
+
+            int insertedRecords = await DbHelper.Instance.UpdateData("SSP_ApproveClaim", parameters);
+
+            return insertedRecords >= 1 ? Ok(approveClaim) : this.Content("Error creating approving Claim");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace InsuranceManagementAPI.Controllers
             {
                 new ProcedureParameter ("@PersonId", personId)
             };
-            return Ok(await DbHelper.Instance.GetData<GetPurchasePolicy>("SSP_GetPurchasedPolicy", parameters));
+            return Ok(await DbHelper.Instance.GetData<GetPurchasePolicy>("SSP_GetPurchasedPolicies", parameters));
         }
 
         [HttpPost]

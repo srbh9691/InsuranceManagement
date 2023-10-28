@@ -30,7 +30,7 @@ namespace InsuranceManagementAPI.Controllers
 
             List<PersonLoginDetail> result = await DbHelper.Instance.GetData<PersonLoginDetail>("SSP_ValidateUser", parameters);
 
-            if (result == null || result.Count < 1)
+            if (result == null || result.Count < 1 || result[0] == null || string.IsNullOrEmpty(result[0].FirstName))
             {
                 return Unauthorized();
             }

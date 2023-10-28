@@ -31,10 +31,11 @@ export class MyClaimsDialogComponent implements OnInit {
     private addClaimDialogComponent: MatDialogRef<MyClaimsDialogComponent>
   ) {
     this.personId = localStorage.getItem('personId');
-    this.getPurchasePolicies();
   }
 
   ngOnInit(): void {
+    this.getPurchasePolicies();
+
     this.addClaimForm = this.formBuilder.group({
       customerPolicyID: ['', Validators.required],
       claimType: ['', Validators.required],

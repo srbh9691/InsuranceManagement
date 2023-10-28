@@ -37,6 +37,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MyClaimsComponent } from './my-claims/my-claims.component';
 import { MyClaimsDialogComponent } from './my-claims/my-claims-dialog/my-claims-dialog.component';
+import { ApproveClaimDialogComponent } from './my-claims/approve-claim-dialog/approve-claim-dialog.component';
 
 const MaterialComponents = [
   BrowserModule,
@@ -80,6 +81,7 @@ const MaterialComponents = [
     MyPolicyDialogComponent,
     MyClaimsComponent,
     MyClaimsDialogComponent,
+    ApproveClaimDialogComponent,
   ],
   imports: [MaterialComponents],
   providers: [

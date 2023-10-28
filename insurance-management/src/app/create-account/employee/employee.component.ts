@@ -16,9 +16,7 @@ export class EmployeeComponent implements OnInit {
   constructor(
     private accountService: CreateAccountService,
     public dialog: MatDialog
-  ) {
-    this.getAllEmployees();
-  }
+  ) {}
 
   displayedColumns: string[] = [
     'PersonId',
