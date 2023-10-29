@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   createAccount() {
     const dialogRef = this.dialog.open(CreateAccountComponent, {
-      width: '25%',
+      width: '30%',
     });
   }
 }

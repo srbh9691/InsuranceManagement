@@ -38,6 +38,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MyClaimsComponent } from './my-claims/my-claims.component';
 import { MyClaimsDialogComponent } from './my-claims/my-claims-dialog/my-claims-dialog.component';
 import { ApproveClaimDialogComponent } from './my-claims/approve-claim-dialog/approve-claim-dialog.component';
+import { CustomerComponent } from './create-account/customer/customer.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 const MaterialComponents = [
   BrowserModule,
@@ -63,6 +65,7 @@ const MaterialComponents = [
   MatStepperModule,
   MatOptionModule,
   MatSelectModule,
+  MatExpansionModule
 ];
 
 @NgModule({
@@ -82,6 +85,7 @@ const MaterialComponents = [
     MyClaimsComponent,
     MyClaimsDialogComponent,
     ApproveClaimDialogComponent,
+    CustomerComponent,
   ],
   imports: [MaterialComponents],
   providers: [

@@ -7,6 +7,10 @@ export interface GetClaim {
   approvedBy: string;
   settlementStatus: boolean;
   approvedAmount: number;
+  claimIntimationDate: Date;
+  ifscCode: string;
+  accountNo: number;
+  accountHolderName: string;
 }
 
 export interface AddClaim {

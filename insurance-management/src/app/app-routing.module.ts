@@ -11,6 +11,7 @@ import { VehicleComponent } from './vehicle/vehicle.component';
 import { MyPoliciesComponent } from './my-policies/my-policies.component';
 import { MyClaimsComponent } from './my-claims/my-claims.component';
 import { RoleGuard } from './shared/roleguard.guard';
+import { CustomerComponent } from './create-account/customer/customer.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,6 +27,11 @@ const routes: Routes = [
         path: 'employee',
         component: EmployeeComponent,
         canActivate: [RoleGuard],
+      },
+      {
+        path: 'customer',
+        component: CustomerComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'vehicle',

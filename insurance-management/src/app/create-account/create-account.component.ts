@@ -33,7 +33,7 @@ export class CreateAccountComponent implements OnInit {
 
     this.createAccountForm = this.formBuilder.group({
       userName: ['', [Validators.required]],
-      password: ['', Validators.required],
+      password: [''],
       emailId: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       firstName: ['', Validators.required],

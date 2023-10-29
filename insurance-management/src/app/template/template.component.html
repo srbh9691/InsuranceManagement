@@ -15,23 +15,23 @@
     <mat-nav-list>
       <a mat-list-item routerLink="purchasePolicy" routerLinkActive="active">
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">description</mat-icon>&nbsp;&nbsp;{{policyText}}
+          <mat-icon class="matIconStyle">description</mat-icon>&nbsp;&nbsp;{{ policyText }}
         </button>
       </a>
       <a mat-list-item routerLink="vehicle" routerLinkActive="active">
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">directions_car</mat-icon>&nbsp;&nbsp;{{vehicleText}}
+          <mat-icon class="matIconStyle">directions_car</mat-icon>&nbsp;&nbsp;{{ vehicleText }}
         </button>
       </a>
       <a mat-list-item routerLink="claim" routerLinkActive="active">
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
-          <mat-icon class="matIconStyle">receipt_long</mat-icon>&nbsp;&nbsp;{{claimText}}
+          <mat-icon class="matIconStyle">receipt_long</mat-icon>&nbsp;&nbsp;{{ claimText }}
         </button>
       </a>
-      <a mat-list-item routerLink="employee" routerLinkActive="active" *ngIf="isEmployee">
+      <a mat-list-item [routerLink]="isEmployee ? ['employee'] : ['customer']" routerLinkActive="active">
         <button (click)="sidenav.close()" mat-icon-button class="navButton">
           <mat-icon class="matIconStyle">manage_accounts</mat-icon
-          >&nbsp;&nbsp;Employees
+          >&nbsp;&nbsp;{{ detailsText }}
         </button>
       </a>
       <a mat-list-item routerLink="policy" routerLinkActive="active">

@@ -6,7 +6,7 @@ mat-form-field {
     max-width: 400px;
     margin: 2em auto;
     text-align: center;
-    max-height: 800px;
+    max-height: 900px;
   }
 
   .header {
@@ -14,7 +14,7 @@ mat-form-field {
   }
 
   .full-width {
-    width: 90%;
+    width: 100%;
   }
 
   .userNameInput {
@@ -29,9 +29,9 @@ mat-form-field {
   }
 
   .mat-stepper-horizontal {
-    margin-top: 8px;
+    margin-top: 2px;
   }
 
   .mat-mdc-form-field {
-    margin-top: 16px;
+    margin-top: 12px;
   }

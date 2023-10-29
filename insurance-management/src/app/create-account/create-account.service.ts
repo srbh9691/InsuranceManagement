@@ -33,6 +33,12 @@ export class CreateAccountService {
     );
   }
 
+  getCustomerInfo(personId: any) {
+    return this.http.get<any>(
+      environment.baseUrl + ApiPaths.Person + '/' + personId
+    );
+  }
+
   makePersonInactive(personId: any, isCustomer: boolean) {
     return this.http.delete(
       environment.baseUrl + ApiPaths.Person + '/' + personId + '/' + isCustomer

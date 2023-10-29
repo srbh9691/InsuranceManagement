@@ -6,6 +6,9 @@
         public string ClaimType { get; set; }
         public decimal ClaimAmount { get; set; }
         public string DamageDetails { get; set; }
+        public string IFSCCode { get; set; }
+        public long AccountNo { get; set; }
+        public string AccountHolderName { get; set; }
     }
 
     public class GetClaim : Claim
@@ -15,13 +18,6 @@
         public bool SettlementStatus { get; set; }
         public decimal ApprovedAmount { get; set; }
         public DateTime ClaimIntimationDate { get; set; }
-    }
-
-    public class AddClaim : Claim
-    {
-        public string IFSCCode { get; set; }
-        public long AccountNo { get; set; }
-        public string AccountHolderName { get; set; }
     }
 
     public class ApproveClaim

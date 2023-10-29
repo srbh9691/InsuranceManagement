@@ -15,6 +15,7 @@ export class TemplateComponent implements OnInit {
   policyText: string = 'My Policies';
   vehicleText: string = 'My Vehicles';
   claimText: string = 'My Claims';
+  detailsText: string = 'My Details';
 
   name!: string;
   constructor(private router: Router, private authService: AuthService) {
@@ -29,6 +30,7 @@ export class TemplateComponent implements OnInit {
     this.policyText = this.isEmployee === true ? 'Purchased Policies' : 'My Policies';
     this.vehicleText = this.isEmployee === true ? 'Customer Vehicles' : 'My Vehicles';
     this.claimText = this.isEmployee === true ? 'All Claims' : 'My Claims';
+    this.detailsText = this.isEmployee === true ? 'Employees' : 'My Details';
 
     //this.autoLogout(120000);
   }

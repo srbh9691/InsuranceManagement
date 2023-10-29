@@ -23,7 +23,7 @@ namespace InsuranceManagementAPI.Controllers
 
         [HttpPost]
         [Route("{personId}")]
-        public async Task<IActionResult> AddClaim([FromRoute] string personId, AddClaim claim)
+        public async Task<IActionResult> AddClaim([FromRoute] string personId, Claim claim)
         {
             List<ProcedureParameter> parameters = new()
             {

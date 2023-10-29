@@ -1,16 +1,8 @@
 <div class="action-button-container" align="end">
   <button
     mat-raised-button
-    color="primary"
-    (click)="addEmployeeDialog()"
-    class="action-button"
-  >
-    <mat-icon>add_chart</mat-icon>
-  </button>
-  <button
-    mat-raised-button
     color="accent"
-    (click)="getAllEmployees()"
+    (click)="getCustomerInfo()"
     class="action-button"
   >
     <mat-icon>refresh</mat-icon>
@@ -23,11 +15,6 @@
 </mat-form-field>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="PersonId">
-      <th mat-header-cell *matHeaderCellDef>Person Id</th>
-      <td mat-cell *matCellDef="let element">{{ element.personId }}</td>
-    </ng-container>
-
     <ng-container matColumnDef="UserName">
       <th mat-header-cell *matHeaderCellDef>Username</th>
       <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
@@ -40,7 +27,9 @@
 
     <ng-container matColumnDef="DateOfBirth">
       <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
-      <td mat-cell *matCellDef="let element">{{ element.dateOfBirth | date : "MM/dd/y"}}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateOfBirth | date : "MM/dd/y" }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="FirstName">
@@ -74,9 +63,6 @@
           (click)="updateEmployeeDialog(element)"
         >
           <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="warn" (click)="deleteEmployee(element)">
-          <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
