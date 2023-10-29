@@ -10,13 +10,13 @@ namespace InsuranceManagementAPI.Controllers
     {
         [HttpGet]
         [Route("{personId}")]
-        public async Task<IActionResult> GetPersonDetails([FromRoute] string personId)
+        public async Task<IActionResult> GetCustomerInfo([FromRoute] string personId)
         {
             List<ProcedureParameter> parameters = new()
             {
                 new ProcedureParameter ("@PersonId", personId)
             };
-            return Ok(await DbHelper.Instance.GetData<Person>("SSP_GetPersonDetails", parameters));
+            return Ok(await DbHelper.Instance.GetData<Person>("SSP_GetCustomerInfo", parameters));
         }
 
         [HttpGet]

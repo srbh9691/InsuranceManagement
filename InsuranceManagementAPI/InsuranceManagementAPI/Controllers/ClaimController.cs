@@ -1,10 +1,12 @@
 ﻿using InsuranceManagementAPI.Data;
 using InsuranceManagementAPI.Helper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsuranceManagementAPI.Controllers
 {
-    [ApiController]
+    [ApiController, Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     public class ClaimController : Controller
     {

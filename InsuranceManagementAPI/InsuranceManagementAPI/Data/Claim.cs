@@ -6,7 +6,6 @@
         public string ClaimType { get; set; }
         public decimal ClaimAmount { get; set; }
         public string DamageDetails { get; set; }
-
     }
 
     public class GetClaim : Claim
@@ -15,6 +14,7 @@
         public string ApprovedBy { get; set; }
         public bool SettlementStatus { get; set; }
         public decimal ApprovedAmount { get; set; }
+        public DateTime ClaimIntimationDate { get; set; }
     }
 
     public class AddClaim : Claim
