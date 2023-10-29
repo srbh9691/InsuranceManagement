@@ -51,7 +51,6 @@ export class MyPolicyDialogComponent implements OnInit {
       policyStartDate: this.purchasePolicyForm.value.policyStartDate,
       policyEndDate: this.purchasePolicyForm.value.policyEndDate,
       insuredDeclaredValue: this.purchasePolicyForm.value.insuredDeclaredValue,
-      status: 'Active',
     };
 
     this.purchasePolicyService

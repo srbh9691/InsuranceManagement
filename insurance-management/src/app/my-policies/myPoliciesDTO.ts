@@ -4,7 +4,7 @@ export interface GetMyPolicyDTO {
   policyStartDate: Date;
   policyEndDate: Date;
   insuredDeclaredValue: number;
-  status: string;
+  status: boolean;
 }
 
 export interface AddMyPolicyDTO {
@@ -13,5 +13,4 @@ export interface AddMyPolicyDTO {
   policyStartDate: Date;
   policyEndDate: Date;
   insuredDeclaredValue: number;
-  status: string;
 }

@@ -33,7 +33,6 @@ namespace InsuranceManagementAPI.Controllers
                 new ProcedureParameter ("@PolicyStartDate", addPurchasePolicy.PolicyStartDate),
                 new ProcedureParameter ("@PolicyEndDate", addPurchasePolicy.PolicyEndDate),
                 new ProcedureParameter ("@InsuredDeclaredValue", addPurchasePolicy.InsuredDeclaredValue),
-                new ProcedureParameter ("@Status", addPurchasePolicy.Status),
             };
 
             int insertedRecords = await DbHelper.Instance.UpdateData("SSP_PurchasePolicy", parameters);

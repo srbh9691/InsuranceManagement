@@ -6,12 +6,13 @@
         public DateTime PolicyStartDate { get; set;}
         public DateTime PolicyEndDate { get; set; }
         public decimal InsuredDeclaredValue { get; set; }
-        public string Status { get; set; }
     }
 
     public class GetPurchasePolicy : PurchasePolicy
     {
         public string CustomerPolicyID { get; set; }
+        public bool Status { get; set; }
+
     }
 
     public class AddPurchasePolicy : PurchasePolicy
