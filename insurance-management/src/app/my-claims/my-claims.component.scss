@@ -54,25 +54,29 @@ tr.example-element-row:not(.example-expanded-row):active {
   display: flex;
 }
 
-.example-element-diagram {
-  min-width: 80px;
-  border: 2px solid black;
-  padding: 8px;
-  font-weight: lighter;
-  margin: 8px 0;
-  height: 104px;
+#outer-div {
+  width: 100%;
+  text-align: center;
 }
 
-.example-element-symbol {
+#inner-div {
+  margin: 0 auto;
+  padding: 3px;
+}
+
+.row {
+  display: flex;
+}
+
+.columnLeft {
+  flex: 50%;
+  padding: 5px;
+  text-align: right;
   font-weight: bold;
-  font-size: 40px;
-  line-height: normal;
 }
 
-.example-element-description {
-  padding: 16px;
-}
-
-.example-element-description-attribution {
-  opacity: 0.5;
+.columnRight {
+  flex: 50%;
+  padding: 5px;
+  text-align: left;
 }

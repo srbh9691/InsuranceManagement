@@ -67,7 +67,9 @@
 
     <ng-container matColumnDef="ClaimIntimationDate">
       <th mat-header-cell *matHeaderCellDef>Intimation Date</th>
-      <td mat-cell *matCellDef="let element">{{ element.claimIntimationDate | date : "MM/dd/y"}}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.claimIntimationDate | date : "MM/dd/y" }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="DamageDetails">
@@ -78,7 +80,12 @@
     <ng-container matColumnDef="Approve">
       <th mat-header-cell *matHeaderCellDef>Approve</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" (click)="approve(element)" *ngIf="!element.settlementStatus">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="approve(element)"
+          *ngIf="!element.settlementStatus"
+        >
           <mat-icon>done</mat-icon>
         </button>
       </td>
@@ -87,54 +94,87 @@
     <ng-container matColumnDef="expand">
       <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
-          <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
-          <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+        <button
+          mat-icon-button
+          aria-label="expand row"
+          (click)="
+            expandedElement = expandedElement === element ? null : element;
+            $event.stopPropagation()
+          "
+        >
+          <mat-icon *ngIf="expandedElement !== element"
+            >keyboard_arrow_down</mat-icon
+          >
+          <mat-icon *ngIf="expandedElement === element"
+            >keyboard_arrow_up</mat-icon
+          >
         </button>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="expandedDetail">
-      <!-- <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
-        <div class="example-element-detail"
-             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-          <div class="example-element-diagram">
-            <div class="example-element-position"> {{element.position}} </div>
-            <div class="example-element-symbol"> {{element.symbol}} </div>
-            <div class="example-element-name"> {{element.name}} </div>
-            <div class="example-element-weight"> {{element.weight}} </div>
-          </div>
-          <div class="example-element-description">
-            {{element.description}}
-            <span class="example-element-description-attribution"> -- Wikipedia </span>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="columnsToDisplayWithExpand.length"
+      >
+        <div
+          class="example-element-detail"
+          [@detailExpand]="
+            element == expandedElement ? 'expanded' : 'collapsed'
+          "
+        >
+          <div id="outer-div">
+            <div class="row">
+              <div class="columnLeft">
+                <label>Damage Details : </label>
+              </div>
+              <div class="columnRight">
+                <label> {{ element.damageDetails }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="columnLeft">
+                <label>IFSC Code : </label>
+              </div>
+              <div class="columnRight">
+                <label> {{ element.ifscCode }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="columnLeft">
+                <label>Account No : </label>
+              </div>
+              <div class="columnRight">
+                <label> {{ element.accountNo }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="columnLeft">
+                <label>Account Holder Name : </label>
+              </div>
+              <div class="columnRight">
+                <label> {{ element.accountHolderName }}</label>
+              </div>
+            </div>
           </div>
         </div>
-      </td> -->
-      <div>
-      <tr>
-        <td mat-cell *matCellDef="let element">{{ element.damageDetails }}</td>
-      </tr>
-      <tr>
-        <td mat-cell *matCellDef="let element">{{ element.ifscCode }}</td>
-      </tr>
-      <tr>
-        <td mat-cell *matCellDef="let element">{{ element.accountNo }}</td>
-      </tr>
-      <tr>
-        <td mat-cell *matCellDef="let element">{{ element.accountHolderName }}</td>
-      </tr>
-    </div>
+      </td>
     </ng-container>
 
-    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr> -->
     <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-    <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
-        class="example-element-row"
-        [class.example-expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element">
-    </tr>
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: columnsToDisplayWithExpand"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+    ></tr>
   </table>
 
   <mat-paginator
