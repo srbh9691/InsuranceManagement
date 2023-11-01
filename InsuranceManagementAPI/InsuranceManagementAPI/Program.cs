@@ -1,5 +1,7 @@
 using InsuranceManagementAPI.Helper;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -95,7 +97,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowOrigin");
+//app.UseCors("AllowOrigin");
+app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()
+                        .AllowAnyMethod().WithExposedHeaders("content-disposition"));
 
 app.UseHttpsRedirection();
 
