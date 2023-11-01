@@ -28,3 +28,16 @@ th {
     font-size: 14px;
     width: 100%;
 }
+
+.childRight {
+  display: inline-block;
+  align-content: end;
+}
+
+.childCenter {
+  display: inline-block;
+  align-content: flex-start;
+  padding-right: 60px;
+  font-size: large;
+  vertical-align: text-top;
+}

@@ -1,22 +1,26 @@
 <div class="action-button-container" align="end">
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="addPolicyDialog()"
-    class="action-button"
-  >
-    <mat-icon>person_add</mat-icon>
-  </button>
-  <button
-    mat-raised-button
-    color="accent"
-    (click)="getAllPolicies()"
-    class="action-button"
-  >
-    <mat-icon>refresh</mat-icon>
-  </button>
+  <div class="childCenter">
+    <label>Customer Care : 9557999956</label>
+  </div>
+  <div class="childRight">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addPolicyDialog()"
+      class="action-button"
+    >
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="getAllPolicies()"
+      class="action-button"
+    >
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
 </div>
-
 <mat-form-field class="full-width">
   <mat-label>Filter</mat-label>
   <input
