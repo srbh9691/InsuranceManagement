@@ -29,7 +29,11 @@ export class LoginService {
           localStorage.setItem('currentUser', result.firstName);
           localStorage.setItem('personId', result.personId);
           localStorage.setItem('isCustomer', result.isCustomer);
-          this.router.navigate(['/policy']);
+          if (localStorage.getItem('isCustomer') === 'false') {
+            this.router.navigate(['/policy']);
+          } else {
+            this.router.navigate(['/purchasePolicy']);
+          }
         },
         error: (err: any) => {
           alert(

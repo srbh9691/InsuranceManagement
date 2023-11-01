@@ -21,6 +21,8 @@ export class MyPolicyDialogComponent implements OnInit {
   policyData: PolicyDTO[] = [];
   vehicleData: VehicleDTO[] = [];
   personId!: any;
+  file: any;
+  fileName: string='';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,6 +43,7 @@ export class MyPolicyDialogComponent implements OnInit {
       policyStartDate: ['', Validators.required],
       policyEndDate: ['', Validators.required],
       insuredDeclaredValue: ['', Validators.required],
+      document,
     });
   }
 
@@ -53,10 +56,16 @@ export class MyPolicyDialogComponent implements OnInit {
       insuredDeclaredValue: this.purchasePolicyForm.value.insuredDeclaredValue,
     };
 
+    let formData = new FormData();
+    formData.set('policyDetail', JSON.stringify(puchasePolicy));
+    formData.set('name', this.fileName);
+    formData.set('file', this.file);
+
     this.purchasePolicyService
-      .purchaseNewPolicy(this.personId, puchasePolicy)
+      .uploadDocument(this.personId, puchasePolicy, formData)
       .subscribe({
-        next: () => {
+        next: (responseData: any) => {
+          console.log(responseData);
           this.purchasePolicyForm.reset();
           this.myPolicyDialogComponent.close();
           alert('Policy purchased Successfully.');
@@ -87,5 +96,11 @@ export class MyPolicyDialogComponent implements OnInit {
         alert('Error while reading policies!');
       },
     });
+  }
+
+  getFile(event: any) {
+    this.file = event.target.files[0];
+    this.fileName = this.file.name;
+    console.log('file', this.file);
   }
 }

@@ -1,9 +1,9 @@
 <div class="action-button-container" align="end">
   <div class="childCenter">
-    <label>Customer Care : 9557999956</label>
+    <label>Customer Care : <a href="tel:+91 1234567890">+91 12345 67890</a></label>
   </div>
   <div class="childRight">
-    <button
+    <button *ngIf="isEmployee"
       mat-raised-button
       color="primary"
       (click)="addPolicyDialog()"

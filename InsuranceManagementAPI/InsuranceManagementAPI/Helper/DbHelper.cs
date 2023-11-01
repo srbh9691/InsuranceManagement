@@ -34,6 +34,31 @@ namespace InsuranceManagementAPI.Helper
             return recordsUpdated;
         }
 
+        public Task<T>? UpdateDataAndGetValue<T>(string procedureName, List<ProcedureParameter> parameters)
+        {
+            try
+            {
+                using SqlConnection con = new(ConnectionString);
+                SqlCommand cmd = new(procedureName, con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                foreach (ProcedureParameter parameter in parameters)
+                {
+                    cmd.Parameters.AddWithValue(parameter.Name, parameter.Value);
+                }
+                con.Open();
+                var myReturnedValue = cmd.ExecuteScalar();
+                con.Close();
+                return Task.FromResult((T)Convert.ChangeType(myReturnedValue, typeof(T)));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public Task<T>? GetFirstRecord<T>(string procedureName, List<ProcedureParameter> parameters)
         {
             try

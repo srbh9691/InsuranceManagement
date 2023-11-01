@@ -40,7 +40,6 @@ import { MyClaimsDialogComponent } from './my-claims/my-claims-dialog/my-claims-
 import { ApproveClaimDialogComponent } from './my-claims/approve-claim-dialog/approve-claim-dialog.component';
 import { CustomerComponent } from './create-account/customer/customer.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { DownloadFileService } from './download-file.service';
 
 const MaterialComponents = [
   BrowserModule,
@@ -90,7 +89,6 @@ const MaterialComponents = [
   ],
   imports: [MaterialComponents],
   providers: [
-    DownloadFileService,
     DatePipe,
     {
       provide: HTTP_INTERCEPTORS,

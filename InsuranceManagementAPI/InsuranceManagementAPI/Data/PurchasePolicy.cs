@@ -12,11 +12,17 @@
     {
         public string CustomerPolicyID { get; set; }
         public bool Status { get; set; }
+        public string DocumentName { get; set; }
+        public string DocumentPath { get; set; }
 
     }
 
-    public class AddPurchasePolicy : PurchasePolicy
+    public class AddPurchasePolicy
     {
-        public long PolicyID { get; set; }
+        public string vehicleChesisNo { get; set; }
+        public DateTime policyStartDate { get; set; }
+        public DateTime policyEndDate { get; set; }
+        public decimal insuredDeclaredValue { get; set; }
+        public long policyID { get; set; }
     }
 }

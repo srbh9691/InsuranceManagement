@@ -5,6 +5,8 @@ export interface GetMyPolicyDTO {
   policyEndDate: Date;
   insuredDeclaredValue: number;
   status: boolean;
+  documentName: string;
+  documentPath: string;
 }
 
 export interface AddMyPolicyDTO {

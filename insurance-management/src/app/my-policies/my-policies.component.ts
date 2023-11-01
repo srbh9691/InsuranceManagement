@@ -27,6 +27,7 @@ export class MyPoliciesComponent implements OnInit {
     'PolicyEndDate',
     'InsuredDeclaredValue',
     'Status',
+    'Document',
   ];
 
   dataSource!: MatTableDataSource<GetMyPolicyDTO>;
@@ -64,5 +65,24 @@ export class MyPoliciesComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  downloadDocument(row: GetMyPolicyDTO) {
+    this.myPoliciesService.downloadDocument(row.customerPolicyID, row.documentName).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        let fileName=response.headers.get('content-disposition')
+        ?.split(';')[1].split('=')[1];
+
+        let blob:Blob = response.body as Blob;
+        let a:any = document.createElement('a');
+        a.download = fileName;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+      },
+      error: () => {
+        alert('Error while reading policies!');
+      },
+    })
   }
 }

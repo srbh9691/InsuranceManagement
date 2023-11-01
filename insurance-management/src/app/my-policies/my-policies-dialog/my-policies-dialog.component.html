@@ -8,7 +8,10 @@
         placeholder="Select Vehicle Chesis No"
         required
       >
-        <mat-option *ngFor="let vehicle of vehicleData" [value]="vehicle.vehicleChesisNo">
+        <mat-option
+          *ngFor="let vehicle of vehicleData"
+          [value]="vehicle.vehicleChesisNo"
+        >
           {{ vehicle.vehicleChesisNo }}
         </mat-option>
       </mat-select>
@@ -55,6 +58,20 @@
         placeholder="Enter Vehicle Insured Declared Value"
         required
       />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label></mat-label>
+      <button type="button" mat-button (click)="fileInput.click()">
+        Choose File
+      </button><span>{{fileName}}</span>
+      <input
+        hidden
+        (change)="getFile($event)"
+        #fileInput
+        type="file"
+        id="file"
+      />
+      <textarea matInput hidden></textarea>
     </mat-form-field>
   </form>
 </div>

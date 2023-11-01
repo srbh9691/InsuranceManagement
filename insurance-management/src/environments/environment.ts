@@ -14,6 +14,7 @@ export enum ApiPaths {
   ResetPassword = '/ResetPassword',
   MyVehicles = '/Vehicle',
   PurchasePolicy = '/PurchasePolicy',
+  DownloadPolicyDocument = '/PurchasePolicy/DownloadPolicyDocument/',
   MyClaims = '/Claim',
 }
 

@@ -28,4 +28,26 @@ export class MyPoliciesService {
       { headers: this.headers }
     );
   }
+
+  uploadDocument(person: string, newPolicy: AddMyPolicyDTO, fileData: any) {
+    let body = new FormData();
+    body.append('newPolicy', JSON.stringify(newPolicy));
+    body.append('file', fileData);
+
+    return this.http.post(
+      environment.baseUrl + ApiPaths.PurchasePolicy + '/' + person,
+      fileData
+    );
+  }
+
+  downloadDocument(customerPolicyID: string, documentName: string): any {
+    return this.http.get(
+      environment.baseUrl +
+        ApiPaths.DownloadPolicyDocument +
+        customerPolicyID +
+        '/' +
+        documentName,
+      { observe: 'response', responseType: 'blob' }
+    );
+  }
 }
