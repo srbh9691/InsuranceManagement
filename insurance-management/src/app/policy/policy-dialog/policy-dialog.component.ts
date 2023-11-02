@@ -19,6 +19,7 @@ export class PolicyDialogComponent implements OnInit {
   policyForm!: FormGroup;
   newUserData!: PolicyDTO;
   buttonText: string = 'Add';
+  titleText: string = 'Add Policy';
   policyID: number = 0;
 
   constructor(
@@ -38,6 +39,7 @@ export class PolicyDialogComponent implements OnInit {
 
     if (this.editData) {
       this.buttonText = 'Update';
+      this.titleText = 'Update Policy';
       this.policyForm.controls['policyID'].setValue(this.editData.policyID);
       this.policyForm.controls['name'].setValue(this.editData.name);
       this.policyForm.controls['typeOfPolicy'].setValue(

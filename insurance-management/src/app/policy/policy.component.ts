@@ -74,11 +74,11 @@ export class PolicyComponent implements OnInit {
     ) {
       this.policyService.deletePolicy(row.policyID).subscribe({
         next: () => {
-          alert('User deleted!');
+          alert('Policy deleted!');
           this.getAllPolicies();
         },
         error: (err: any) => {
-          alert('Error while deleting user!');
+          alert('Error while deleting policy!');
         },
       });
     }
