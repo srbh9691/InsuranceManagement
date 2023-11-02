@@ -96,7 +96,7 @@ namespace InsuranceManagementAPI.Controllers
                     new ProcedureParameter ("@DocumentName", documentName),
                 };
 
-                string path = await DbHelper.Instance.GetFirstRecord<string>("SSP_GetDocumentPath", parameters);
+                string path = await DbHelper.Instance.GetFirstRecord<string>("SSP_GetPolicyDocumentPath", parameters);
 
                 if (System.IO.File.Exists(path))
                 {
