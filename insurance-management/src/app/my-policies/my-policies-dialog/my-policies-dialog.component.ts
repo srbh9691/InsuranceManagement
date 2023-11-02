@@ -53,7 +53,7 @@ export class MyPolicyDialogComponent implements OnInit {
       policyID: this.purchasePolicyForm.value.policyID,
       policyStartDate: this.purchasePolicyForm.value.policyStartDate,
       policyEndDate: this.purchasePolicyForm.value.policyEndDate,
-      insuredDeclaredValue: this.purchasePolicyForm.value.insuredDeclaredValue,
+      insuredDeclaredValue: Number(this.purchasePolicyForm.value.insuredDeclaredValue),
     };
 
     let formData = new FormData();

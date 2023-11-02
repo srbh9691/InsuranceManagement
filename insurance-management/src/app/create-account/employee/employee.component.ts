@@ -55,6 +55,9 @@ export class EmployeeComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateAccountComponent, {
       width: '25%',
     });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllEmployees();
+    });
   }
 
   updateEmployeeDialog(row: any) {

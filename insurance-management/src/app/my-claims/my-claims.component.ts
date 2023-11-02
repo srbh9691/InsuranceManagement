@@ -87,12 +87,18 @@ export class MyClaimsComponent implements OnInit {
     const dialogRef = this.dialog.open(MyClaimsDialogComponent, {
       width: '25%',
     });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getMyClaims();
+    });
   }
 
   approve(row: GetClaim) {
     const dialogRef = this.dialog.open(ApproveClaimDialogComponent, {
       width: '25%',
       data: row,
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getMyClaims();
     });
   }
 

@@ -56,6 +56,9 @@ export class MyPoliciesComponent implements OnInit {
     const dialogRef = this.dialog.open(MyPolicyDialogComponent, {
       width: '25%',
     });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getMyPolicies();
+    });
   }
 
   applyFilter(event: Event) {

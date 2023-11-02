@@ -57,12 +57,18 @@ export class PolicyComponent implements OnInit {
     const dialogRef = this.dialog.open(PolicyDialogComponent, {
       width: '25%',
     });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllPolicies();
+    });
   }
 
   updatePolicyDialog(row: any) {
     const dialogRef = this.dialog.open(PolicyDialogComponent, {
       width: '25%',
       data: row,
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllPolicies();
     });
   }
 

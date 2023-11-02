@@ -56,12 +56,18 @@ export class VehicleComponent implements OnInit {
     const dialogRef = this.dialog.open(VehicleDialogComponent, {
       width: '25%',
     });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllVehicles();
+    });
   }
 
   updateVehicleDialog(row: any) {
     const dialogRef = this.dialog.open(VehicleDialogComponent, {
       width: '25%',
       data: row,
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.getAllVehicles();
     });
   }
 
