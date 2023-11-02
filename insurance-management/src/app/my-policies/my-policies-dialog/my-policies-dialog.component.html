@@ -1,4 +1,4 @@
-<h2 mat-dialog-title style="background-color: aqua">Purchase Policy</h2>
+<h2 mat-dialog-title>Purchase Policy</h2>
 <div mat-dialog-content>
   <form [formGroup]="purchasePolicyForm">
     <mat-form-field class="full-width" appearance="outline">
@@ -62,8 +62,8 @@
     <mat-form-field class="full-width" appearance="outline">
       <mat-label></mat-label>
       <button type="button" mat-button (click)="fileInput.click()">
-        Choose File
-      </button><span>{{fileName}}</span>
+        Choose File</button
+      ><span>{{ fileName }}</span>
       <input
         hidden
         (change)="getFile($event)"

@@ -4,6 +4,7 @@
     color="primary"
     (click)="addClaim()"
     class="action-button"
+    *ngIf="!isEmployee"
   >
     <mat-icon>person_add</mat-icon>
   </button>
@@ -72,11 +73,6 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="DamageDetails">
-      <th mat-header-cell *matHeaderCellDef>Damage Details</th>
-      <td mat-cell *matCellDef="let element">{{ element.damageDetails }}</td>
-    </ng-container>
-
     <ng-container matColumnDef="Approve">
       <th mat-header-cell *matHeaderCellDef>Approve</th>
       <td mat-cell *matCellDef="let element">
@@ -87,6 +83,37 @@
           *ngIf="!element.settlementStatus"
         >
           <mat-icon>done</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Documents">
+      <th mat-header-cell *matHeaderCellDef>Documents</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="fileInput.click()"
+          matTooltip="Upload Document"
+          *ngIf="!element.settlementStatus"
+        >
+          <mat-icon>upload_file</mat-icon>
+        </button>
+        <input
+          hidden
+          (change)="getFile($event, element.claimID)"
+          #fileInput
+          type="file"
+          id="file"
+        />
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="downloadFile(element)"
+          matTooltip="Download Document"
+          *ngIf="element.documentName"
+        >
+          <mat-icon>file_download</mat-icon>
         </button>
       </td>
     </ng-container>

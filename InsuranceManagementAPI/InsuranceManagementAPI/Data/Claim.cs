@@ -18,6 +18,7 @@
         public bool SettlementStatus { get; set; }
         public decimal ApprovedAmount { get; set; }
         public DateTime ClaimIntimationDate { get; set; }
+        public string DocumentName { get; set; }
     }
 
     public class ApproveClaim

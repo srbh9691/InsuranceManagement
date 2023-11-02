@@ -21,15 +21,7 @@ export class MyPoliciesService {
     );
   }
 
-  purchaseNewPolicy(person: string, newPolicy: AddMyPolicyDTO): any {
-    return this.http.post(
-      environment.baseUrl + ApiPaths.PurchasePolicy + '/' + person,
-      JSON.stringify(newPolicy),
-      { headers: this.headers }
-    );
-  }
-
-  uploadDocument(person: string, newPolicy: AddMyPolicyDTO, fileData: any) {
+  purchaseNewPolicy(person: string, newPolicy: AddMyPolicyDTO, fileData: any) {
     let body = new FormData();
     body.append('newPolicy', JSON.stringify(newPolicy));
     body.append('file', fileData);

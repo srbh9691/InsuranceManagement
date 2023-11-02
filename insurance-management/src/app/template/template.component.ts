@@ -11,7 +11,7 @@ import { AuthService } from '../shared/auth.service';
 export class TemplateComponent implements OnInit {
   userActivity: any;
   userInactive: Subject<any> = new Subject();
-  isEmployee! : boolean;
+  isEmployee!: boolean;
   policyText: string = 'My Policies';
   vehicleText: string = 'My Vehicles';
   claimText: string = 'My Claims';
@@ -27,8 +27,10 @@ export class TemplateComponent implements OnInit {
     const userJson = localStorage.getItem('currentUser');
     this.name = userJson !== null ? `Hello ${userJson} ` : '';
 
-    this.policyText = this.isEmployee === true ? 'Purchased Policies' : 'My Policies';
-    this.vehicleText = this.isEmployee === true ? 'Customer Vehicles' : 'My Vehicles';
+    this.policyText =
+      this.isEmployee === true ? 'Purchased Policies' : 'My Policies';
+    this.vehicleText =
+      this.isEmployee === true ? 'Customer Vehicles' : 'My Vehicles';
     this.claimText = this.isEmployee === true ? 'All Claims' : 'My Claims';
     this.detailsText = this.isEmployee === true ? 'Employees' : 'My Details';
 

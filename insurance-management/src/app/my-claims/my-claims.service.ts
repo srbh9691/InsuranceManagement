@@ -37,4 +37,24 @@ export class MyClaimsService {
       { headers: this.headers }
     );
   }
+
+  uploadDocument(claimId: string, file: any, fileName: string) {
+    let fileData = new FormData();
+    fileData.set('file', file);
+    fileData.set('fileName', fileName);
+    fileData.set('claimId', claimId);
+    return this.http.post(environment.baseUrl + ApiPaths.MyClaims, fileData);
+  }
+
+  downloadDocument(claimId: string, documentName: string): any {
+    return this.http.get(
+      environment.baseUrl +
+        ApiPaths.MyClaims +
+        '/' +
+        claimId +
+        '/' +
+        documentName,
+      { observe: 'response', responseType: 'blob' }
+    );
+  }
 }

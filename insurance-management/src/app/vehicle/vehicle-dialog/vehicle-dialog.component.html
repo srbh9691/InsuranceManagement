@@ -1,4 +1,4 @@
-<h2 mat-dialog-title style="background-color: aqua">Add Vehicle</h2>
+<h2 mat-dialog-title>Add Vehicle</h2>
 <div mat-dialog-content>
   <form [formGroup]="vehicleForm">
     <mat-form-field class="full-width" appearance="outline">
@@ -22,14 +22,14 @@
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Type Of Vehicle</mat-label>
       <mat-select
-      formControlName="typeOfVehicle"
-      placeholder="Select Type Of Vehicle"
-      required
-    >
-      <mat-option *ngFor="let type of vehicleTypes" [value]="type.value">
-        {{ type.viewValue }}
-      </mat-option>
-    </mat-select>
+        formControlName="typeOfVehicle"
+        placeholder="Select Type Of Vehicle"
+        required
+      >
+        <mat-option *ngFor="let type of vehicleTypes" [value]="type.value">
+          {{ type.viewValue }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Make</mat-label>

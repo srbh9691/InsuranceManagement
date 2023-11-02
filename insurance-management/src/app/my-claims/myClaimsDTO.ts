@@ -11,6 +11,7 @@ export interface GetClaim {
   ifscCode: string;
   accountNo: number;
   accountHolderName: string;
+  documentName: string;
 }
 
 export interface AddClaim {

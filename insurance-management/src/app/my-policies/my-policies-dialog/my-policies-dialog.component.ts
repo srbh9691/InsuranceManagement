@@ -22,7 +22,7 @@ export class MyPolicyDialogComponent implements OnInit {
   vehicleData: VehicleDTO[] = [];
   personId!: any;
   file: any;
-  fileName: string='';
+  fileName: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,7 +62,7 @@ export class MyPolicyDialogComponent implements OnInit {
     formData.set('file', this.file);
 
     this.purchasePolicyService
-      .uploadDocument(this.personId, puchasePolicy, formData)
+      .purchaseNewPolicy(this.personId, puchasePolicy, formData)
       .subscribe({
         next: (responseData: any) => {
           console.log(responseData);

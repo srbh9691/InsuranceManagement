@@ -32,7 +32,7 @@ namespace InsuranceManagementAPI.Controllers
         }
 
         [HttpGet]
-        [Route("DownloadClaimDocument/{claimID}/{documentName}")]
+        [Route("{claimID}/{documentName}")]
         public async Task<IActionResult> DownloadClaimDocument([FromRoute] string claimID, [FromRoute] string documentName)
         {
             try
@@ -91,7 +91,7 @@ namespace InsuranceManagementAPI.Controllers
             StringValues jsonData;
             HttpContext.Request.Form.TryGetValue("claimID", out jsonData);
 
-            string claimID = JsonSerializer.Deserialize<string>(jsonData.First());
+            string claimID = jsonData.First();
 
             List<ProcedureParameter> parameters = new()
             {
@@ -102,7 +102,7 @@ namespace InsuranceManagementAPI.Controllers
 
             int insertedRecords = await DbHelper.Instance.UpdateData("SSP_AddUpdateClaimDocument", parameters);
 
-            return insertedRecords >= 1 ? Ok(claimID) : this.Content("Error adding/updating clain document");
+            return insertedRecords >= 1 ? Ok(insertedRecords) : this.Content("Error adding/updating clain document");
         }
 
         [HttpPost]
