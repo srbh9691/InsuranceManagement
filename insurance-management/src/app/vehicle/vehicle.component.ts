@@ -79,7 +79,7 @@ export class VehicleComponent implements OnInit {
           ' ?'
       )
     ) {
-      this.vehicleService.deletePolicy(row.policyID).subscribe({
+      this.vehicleService.deletePolicy(row.vehicleChesisNo).subscribe({
         next: () => {
           alert('Vehicle deleted!');
           this.getAllVehicles();
